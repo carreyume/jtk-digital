@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e-Mahkamah Buruh — Jabatan Tenaga Kerja Semenanjung Malaysia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --myds-blue: #1e3a6b;
+  --myds-blue-mid: #2d5aa0;
+  --myds-blue-light: #dce8f8;
+  --myds-blue-accent: #0055b8;
+  --myds-red: #cc0001;
+  --myds-yellow: #ffd600;
+  --myds-teal: #0d7d6b;
+  --myds-teal-light: #e0f5f1;
+  --myds-surface: #f5f6fa;
+  --myds-white: #ffffff;
+  --myds-border: #d1d9e6;
+  --myds-text: #1a1d2e;
+  --myds-muted: #5a6478;
+  --myds-subtle: #8892a4;
+  --myds-success: #166534;
+  --myds-success-light: #dcfce7;
+  --myds-danger: #991b1b;
+  --myds-danger-light: #fee2e2;
+  --myds-warning: #92400e;
+  --myds-warning-light: #fef3c7;
+  --myds-court-gold: #8b6914;
+  --myds-court-gold-light: #fdf8e8;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--myds-surface); color: var(--myds-text); font-size: 15px; line-height: 1.6; }
+
+/* GOV BANNER */
+.gov-banner { background: var(--myds-blue); color: #fff; font-size: 12px; padding: 6px 0; border-bottom: 3px solid var(--myds-yellow); }
+.gov-banner-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 10px; }
+.gov-verify { margin-left: auto; display: flex; align-items: center; gap: 6px; opacity: 0.75; cursor: pointer; }
+.gov-verify:hover { opacity: 1; }
+
+/* HEADER */
+header { background: var(--myds-white); border-bottom: 1px solid var(--myds-border); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 20px; }
+.logo-block { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
+.logo-emblem {
+  width: 46px; height: 46px;
+  background: linear-gradient(135deg, var(--myds-court-gold) 0%, #a07828 100%);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 20px; flex-shrink: 0;
+}
+.logo-text p { font-size: 11px; color: var(--myds-muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
+.logo-text h1 { font-size: 16px; font-weight: 700; color: var(--myds-blue); line-height: 1.2; }
+.header-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.header-user-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--myds-surface); border: 1px solid var(--myds-border);
+  border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 500;
+}
+.user-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
+.btn-primary-sm {
+  padding: 8px 18px; background: var(--myds-blue); color: #fff;
+  border: none; border-radius: var(--radius-md); font-weight: 600; font-size: 13px; cursor: pointer;
+}
+.btn-primary-sm:hover { background: var(--myds-blue-mid); }
+.btn-gold-sm {
+  padding: 8px 18px; background: var(--myds-court-gold); color: #fff;
+  border: none; border-radius: var(--radius-md); font-weight: 600; font-size: 13px; cursor: pointer;
+}
+.btn-gold-sm:hover { background: #7a5c11; }
+
+/* SIDEBAR LAYOUT */
+.layout { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 110px); max-width: 1200px; margin: 0 auto; padding: 24px 24px 40px; gap: 24px; }
+
+/* SIDEBAR */
+.sidebar { }
+.sidebar-card { background: var(--myds-white); border: 1px solid var(--myds-border); border-radius: var(--radius-lg); overflow: hidden; }
+.sidebar-user {
+  padding: 18px 16px; background: var(--myds-blue);
+  display: flex; align-items: center; gap: 12px;
+}
+.avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0;
+}
+.user-info p { font-size: 13px; font-weight: 600; color: #fff; }
+.user-info span { font-size: 11px; color: rgba(255,255,255,0.7); }
+.sidebar-nav { padding: 8px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: var(--radius-md);
+  font-size: 13px; font-weight: 500; color: var(--myds-muted);
+  cursor: pointer; transition: all 0.15s; text-decoration: none;
+  margin-bottom: 2px;
+}
+.nav-item:hover { background: var(--myds-surface); color: var(--myds-text); }
+.nav-item.active { background: var(--myds-blue-light); color: var(--myds-blue); font-weight: 600; }
+.nav-item-icon { font-size: 16px; flex-shrink: 0; }
+.nav-badge {
+  margin-left: auto; background: var(--myds-red); color: #fff;
+  font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 10px;
+}
+.nav-section-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--myds-subtle); font-weight: 700; padding: 10px 12px 4px; }
+.sidebar-footer { padding: 12px 16px; border-top: 1px solid var(--myds-border); font-size: 11px; color: var(--myds-subtle); }
+
+/* MAIN CONTENT */
+.content { }
+.page-header { margin-bottom: 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.page-title-block {}
+.breadcrumb { font-size: 12px; color: var(--myds-subtle); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.breadcrumb a { color: var(--myds-blue); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.page-title { font-size: 22px; font-weight: 700; color: var(--myds-text); }
+.page-sub { font-size: 13px; color: var(--myds-muted); margin-top: 4px; }
+
+/* STATS ROW */
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.stat-card { background: var(--myds-white); border: 1px solid var(--myds-border); border-radius: var(--radius-lg); padding: 16px 18px; }
+.stat-label { font-size: 11px; color: var(--myds-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 8px; }
+.stat-val { font-size: 24px; font-weight: 700; color: var(--myds-text); line-height: 1; }
+.stat-change { font-size: 11px; color: var(--myds-subtle); margin-top: 6px; display: flex; align-items: center; gap: 4px; }
+.stat-change.up { color: var(--myds-success); }
+.stat-change.down { color: var(--myds-danger); }
+
+/* ALERT */
+.alert { padding: 12px 16px; border-radius: var(--radius-md); display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; border: 1px solid; font-size: 13px; }
+.alert-warning { background: var(--myds-warning-light); border-color: #fbbf24; color: var(--myds-warning); }
+.alert-info { background: var(--myds-blue-light); border-color: #93b8e8; color: var(--myds-blue-mid); }
+.alert-success { background: var(--myds-success-light); border-color: #86efac; color: var(--myds-success); }
+.alert-court { background: var(--myds-court-gold-light); border-color: #d4a853; color: var(--myds-court-gold); }
+
+/* CARD */
+.card { background: var(--myds-white); border: 1px solid var(--myds-border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 20px; }
+.card-header { padding: 14px 18px; border-bottom: 1px solid var(--myds-border); display: flex; align-items: center; justify-content: space-between; background: var(--myds-surface); }
+.card-title { font-size: 14px; font-weight: 700; color: var(--myds-text); }
+.card-subtitle { font-size: 12px; color: var(--myds-muted); margin-top: 2px; }
+.card-body { padding: 18px; }
+
+/* CASE LIST */
+.case-item {
+  padding: 16px 18px; border-bottom: 1px solid #f0f2f6; display: flex; align-items: flex-start; gap: 14px; cursor: pointer; transition: background 0.1s;
+}
+.case-item:last-child { border-bottom: none; }
+.case-item:hover { background: var(--myds-surface); }
+.case-icon-wrap { width: 40px; height: 40px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.case-icon-filing { background: var(--myds-blue-light); }
+.case-icon-hearing { background: #fef3c7; }
+.case-icon-award { background: var(--myds-success-light); }
+.case-icon-mediation { background: #ede9fe; }
+.case-meta { flex: 1; min-width: 0; }
+.case-ref { font-size: 11px; font-family: monospace; font-weight: 600; color: var(--myds-muted); margin-bottom: 3px; }
+.case-title { font-size: 14px; font-weight: 600; color: var(--myds-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 4px; }
+.case-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 500; }
+.tag-blue { background: var(--myds-blue-light); color: var(--myds-blue); }
+.tag-amber { background: #fef3c7; color: #92400e; }
+.tag-green { background: var(--myds-success-light); color: var(--myds-success); }
+.tag-purple { background: #ede9fe; color: #5b21b6; }
+.tag-red { background: var(--myds-danger-light); color: var(--myds-danger); }
+.case-right { text-align: right; flex-shrink: 0; }
+.case-date { font-size: 12px; color: var(--myds-subtle); margin-bottom: 6px; }
+.case-status { }
+
+/* STATUS BADGE */
+.status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.s-new { background: var(--myds-blue-light); color: var(--myds-blue); }
+.s-mediation { background: #ede9fe; color: #5b21b6; }
+.s-hearing { background: #fef3c7; color: #92400e; }
+.s-awarded { background: var(--myds-success-light); color: var(--myds-success); }
+.s-dismissed { background: var(--myds-danger-light); color: var(--myds-danger); }
+.s-appeal { background: #fff1f5; color: #9d174d; }
+.s-mediated { background: #f0fdf4; color: #166534; }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 9px; top: 0; bottom: 0; width: 2px; background: var(--myds-border); }
+.timeline-item { position: relative; padding-bottom: 20px; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute; left: -28px; top: 3px;
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 10px;
+  border: 2px solid var(--myds-white);
+  box-shadow: 0 0 0 2px var(--myds-border);
+}
+.dot-done { background: var(--myds-success); box-shadow: 0 0 0 2px #86efac; }
+.dot-active { background: var(--myds-blue); box-shadow: 0 0 0 2px #93b8e8; }
+.dot-pending { background: var(--myds-border); }
+.dot-warning { background: #f59e0b; box-shadow: 0 0 0 2px #fbbf24; }
+.timeline-date { font-size: 11px; color: var(--myds-subtle); margin-bottom: 3px; font-weight: 500; }
+.timeline-title { font-size: 13px; font-weight: 600; color: var(--myds-text); margin-bottom: 3px; }
+.timeline-desc { font-size: 12px; color: var(--myds-muted); }
+.timeline-badge { display: inline-block; background: var(--myds-success-light); color: var(--myds-success); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-top: 4px; }
+
+/* FORM ELEMENTS */
+label { display: block; font-size: 13px; font-weight: 600; color: var(--myds-text); margin-bottom: 6px; }
+label span.req { color: var(--myds-red); margin-left: 3px; }
+label span.opt { color: var(--myds-subtle); font-weight: 400; font-size: 12px; margin-left: 4px; }
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"], select, textarea {
+  width: 100%; padding: 9px 12px;
+  border: 1px solid var(--myds-border); border-radius: var(--radius-md);
+  font-size: 13px; font-family: inherit; color: var(--myds-text);
+  background: var(--myds-white); transition: all 0.15s; appearance: none;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--myds-blue-accent); box-shadow: 0 0 0 3px rgba(0,85,184,0.1); }
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px;
+}
+textarea { resize: vertical; min-height: 90px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.form-group { margin-bottom: 14px; }
+.hint { font-size: 11px; color: var(--myds-subtle); margin-top: 4px; }
+
+/* FILING WIZARD */
+.wizard-steps-bar { display: flex; margin-bottom: 28px; background: var(--myds-white); border: 1px solid var(--myds-border); border-radius: var(--radius-lg); padding: 12px 16px; gap: 0; align-items: center; overflow-x: auto; }
+.wstep { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.wstep-num { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.wstep-num.done { background: var(--myds-success); color: #fff; }
+.wstep-num.active { background: var(--myds-blue); color: #fff; }
+.wstep-num.pending { background: var(--myds-surface); color: var(--myds-subtle); border: 1px solid var(--myds-border); }
+.wstep-label { font-size: 12px; font-weight: 600; }
+.wstep-label.done { color: var(--myds-success); }
+.wstep-label.active { color: var(--myds-blue); }
+.wstep-label.pending { color: var(--myds-subtle); }
+.wstep-connector { width: 32px; height: 2px; background: var(--myds-border); margin: 0 8px; flex-shrink: 0; }
+.wstep-connector.done { background: var(--myds-success); }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--myds-muted); background: var(--myds-surface); border-bottom: 1px solid var(--myds-border); }
+td { padding: 12px 14px; border-bottom: 1px solid #f0f2f6; vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafbfc; }
+.monospace { font-family: monospace; font-size: 12px; font-weight: 600; color: var(--myds-blue); }
+
+/* VIRTUAL HEARING */
+.hearing-room {
+  background: var(--myds-blue);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.hearing-room::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(255,255,255,0.05) 0%, transparent 60%);
+}
+.hearing-room-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; position: relative; }
+.hearing-room-sub { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 20px; position: relative; }
+.participants-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; position: relative; margin-bottom: 20px; }
+.participant-card {
+  background: rgba(255,255,255,0.1); border-radius: var(--radius-md);
+  padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.participant-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.pa-judge { background: var(--myds-yellow); color: var(--myds-blue); }
+.pa-claimant { background: #22c55e; color: #fff; }
+.pa-respondent { background: #f87171; color: #fff; }
+.pa-inactive { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.4); }
+.participant-name { font-size: 12px; font-weight: 600; text-align: center; }
+.participant-role { font-size: 11px; color: rgba(255,255,255,0.6); text-align: center; }
+.participant-status { width: 8px; height: 8px; border-radius: 50%; }
+.ps-live { background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,0.3); }
+.ps-off { background: rgba(255,255,255,0.3); }
+.hearing-controls { display: flex; gap: 10px; position: relative; flex-wrap: wrap; }
+.ctrl-btn {
+  padding: 8px 16px; border-radius: var(--radius-md); font-size: 12px; font-weight: 600;
+  border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
+}
+.ctrl-primary { background: var(--myds-yellow); color: var(--myds-blue); }
+.ctrl-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+.ctrl-danger { background: #ef4444; color: #fff; }
+.live-badge { display: flex; align-items: center; gap: 6px; background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.4); color: #fca5a5; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; margin-bottom: 12px; width: fit-content; position: relative; }
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* AWARD SECTION */
+.award-box {
+  border: 2px solid var(--myds-court-gold);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.award-header {
+  background: var(--myds-court-gold);
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.award-header h3 { color: #fff; font-size: 14px; font-weight: 700; }
+.award-header span { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+.award-body { padding: 18px; background: var(--myds-court-gold-light); }
+.award-amount { font-size: 32px; font-weight: 700; color: var(--myds-court-gold); margin-bottom: 4px; }
+.award-sub { font-size: 13px; color: var(--myds-muted); margin-bottom: 16px; }
+.award-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.award-detail-item { background: #fff; border-radius: var(--radius-md); padding: 12px; border: 1px solid #e8d5a0; }
+.award-detail-label { font-size: 11px; color: var(--myds-subtle); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.award-detail-value { font-size: 13px; font-weight: 600; color: var(--myds-text); }
+
+/* DOCUMENT QUEUE */
+.doc-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f0f2f6; }
+.doc-item:last-child { border-bottom: none; }
+.doc-icon { width: 36px; height: 36px; background: var(--myds-surface); border: 1px solid var(--myds-border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.doc-name { font-size: 13px; font-weight: 600; color: var(--myds-text); }
+.doc-meta { font-size: 11px; color: var(--myds-subtle); margin-top: 2px; }
+.doc-status { margin-left: auto; }
+.doc-verify { font-size: 11px; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.doc-ok { background: var(--myds-success-light); color: var(--myds-success); }
+.doc-pending { background: #fef3c7; color: #92400e; }
+.doc-required { background: var(--myds-danger-light); color: var(--myds-danger); }
+
+/* TABS */
+.tab-nav { display: flex; gap: 4px; background: var(--myds-white); border: 1px solid var(--myds-border); border-radius: var(--radius-lg); padding: 4px; margin-bottom: 24px; width: fit-content; }
+.tab-btn { padding: 8px 18px; border: none; background: transparent; border-radius: var(--radius-md); font-size: 13px; font-weight: 600; color: var(--myds-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.tab-btn.active { background: var(--myds-blue); color: #fff; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* SCHEDULE CALENDAR */
+.cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.cal-title { font-size: 14px; font-weight: 700; }
+.cal-nav-btn { padding: 4px 10px; background: var(--myds-surface); border: 1px solid var(--myds-border); border-radius: var(--radius-md); font-size: 12px; font-weight: 600; cursor: pointer; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal-day-label { text-align: center; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--myds-subtle); padding: 6px 0; }
+.cal-day { text-align: center; padding: 6px 4px; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer; transition: all 0.15s; }
+.cal-day:hover { background: var(--myds-blue-light); }
+.cal-day.today { background: var(--myds-blue); color: #fff; font-weight: 700; }
+.cal-day.has-hearing { background: #fef3c7; color: #92400e; font-weight: 600; }
+.cal-day.other-month { color: var(--myds-subtle); }
+.cal-day.has-deadline { background: var(--myds-danger-light); color: var(--myds-danger); font-weight: 600; }
+
+/* PAYMENT */
+.payment-summary { background: var(--myds-court-gold-light); border: 1px solid #e8d5a0; border-radius: var(--radius-md); padding: 16px 18px; }
+.payment-line { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid #e8d5a0; }
+.payment-line:last-child { border-bottom: none; font-weight: 700; font-size: 14px; padding-top: 10px; }
+.payment-label { color: var(--myds-muted); }
+.payment-value { font-weight: 600; color: var(--myds-text); }
+
+/* PHASE BANNER */
+.phase-banner { background: var(--myds-warning-light); border-left: 4px solid #f59e0b; padding: 10px 16px; font-size: 13px; color: #92400e; display: flex; align-items: center; gap: 10px; }
+.phase-tag { background: #f59e0b; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* FOOTER */
+footer { background: var(--myds-text); color: rgba(255,255,255,0.7); padding: 24px; font-size: 12px; text-align: center; }
+footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } .sidebar { display: none; } .stats-row { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 600px) { .participants-grid { grid-template-columns: repeat(2,1fr); } .form-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="phase-banner">
+  <span class="phase-tag">Beta</span>
+  e-Mahkamah Buruh dalam fasa pelancaran. Semua prosiding dalam talian tertakluk kepada pengesahan oleh Hakim Mahkamah Buruh. Tel: <strong style="margin-left:4px">03-8000 8000</strong>
+</div>
+
+<div class="gov-banner">
+  <div class="gov-banner-inner">
+    <svg width="22" height="28" viewBox="0 0 40 50" fill="none">
+      <rect x="8" y="4" width="24" height="30" rx="2" fill="#FFD600" opacity="0.9"/>
+      <rect x="12" y="8" width="16" height="20" rx="1" fill="#1e3a6b"/>
+      <polygon points="20,6 23,12 17,12" fill="#CC0001"/>
+    </svg>
+    <span><strong>Laman web rasmi Kerajaan Malaysia</strong> — e-Mahkamah Buruh · Jabatan Tenaga Kerja Semenanjung Malaysia</span>
+    <span class="gov-verify">🔒 Sahkan laman web ini</span>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <a class="logo-block" href="#">
+      <div class="logo-emblem">⚖️</div>
+      <div class="logo-text">
+        <p>Jabatan Tenaga Kerja Semenanjung Malaysia</p>
+        <h1>e-Mahkamah Buruh</h1>
+      </div>
+    </a>
+    <div class="header-right">
+      <div class="header-user-chip">
+        <span class="user-dot"></span>
+        Ahmad Qaiyum · Penuntut
+      </div>
+      <button class="btn-gold-sm" onclick="showView('filing')">+ Failkan Tuntutan</button>
+      <button class="btn-primary-sm">Log Masuk / Daftar</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-user">
+        <div class="avatar">AQ</div>
+        <div class="user-info">
+          <p>Ahmad Qaiyum</p>
+          <span>IC: 9001xx-14-xxxx</span>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <span class="nav-section-label">Utama</span>
+        <a class="nav-item active" href="#" onclick="showView('dashboard')"><span class="nav-item-icon">🏠</span> Papan Pemuka</a>
+        <a class="nav-item" href="#" onclick="showView('cases')"><span class="nav-item-icon">📂</span> Kes Saya <span class="nav-badge">3</span></a>
+        <a class="nav-item" href="#" onclick="showView('hearing')"><span class="nav-item-icon">🎙️</span> Perbicaraan Atas Talian</a>
+        <a class="nav-item" href="#" onclick="showView('documents')"><span class="nav-item-icon">📄</span> Dokumen</a>
+
+        <span class="nav-section-label">Tindakan</span>
+        <a class="nav-item" href="#" onclick="showView('filing')"><span class="nav-item-icon">✍️</span> Failkan Tuntutan</a>
+        <a class="nav-item" href="#" onclick="showView('mediation')"><span class="nav-item-icon">🤝</span> Mediasi</a>
+        <a class="nav-item" href="#" onclick="showView('awards')"><span class="nav-item-icon">⚖️</span> Keputusan & Award</a>
+        <a class="nav-item" href="#"><span class="nav-item-icon">💳</span> Pembayaran Yuran</a>
+
+        <span class="nav-section-label">Sokongan</span>
+        <a class="nav-item" href="#"><span class="nav-item-icon">❓</span> Panduan & FAQ</a>
+        <a class="nav-item" href="#"><span class="nav-item-icon">📞</span> Hubungi Pendaftar</a>
+      </div>
+      <div class="sidebar-footer">Terakhir log masuk: Hari ini, 9:14 AM</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <!-- TAB NAV (mobile-friendly) -->
+    <div class="tab-nav" style="display:none" id="mobile-tabs">
+      <button class="tab-btn active">Utama</button>
+      <button class="tab-btn">Kes</button>
+      <button class="tab-btn">Perbicaraan</button>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="view-dashboard">
+      <div class="page-header">
+        <div class="page-title-block">
+          <div class="breadcrumb"><a href="#">e-Mahkamah Buruh</a> › Papan Pemuka</div>
+          <h2 class="page-title">Papan Pemuka</h2>
+          <p class="page-sub">Selamat kembali, Ahmad Qaiyum. Anda mempunyai 2 tindakan segera.</p>
+        </div>
+      </div>
+
+      <div class="alert alert-court">
+        ⚖️ <div><strong>Notis Perbicaraan:</strong> Perbicaraan kes <strong>MB-2024-KL-08421</strong> dijadualkan pada <strong>5 Jun 2026, 10:00 pagi</strong> melalui video-konferens. <a href="#" onclick="showView('hearing')" style="font-weight:700;text-decoration:underline">Sertai Bilik Perbicaraan →</a></div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Kes Aktif</div>
+          <div class="stat-val">3</div>
+          <div class="stat-change">📂 2 dalam prosiding</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Perbicaraan Akan Datang</div>
+          <div class="stat-val">1</div>
+          <div class="stat-change up">📅 5 Jun 2026</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Dokumen Diperlukan</div>
+          <div class="stat-val">2</div>
+          <div class="stat-change down">⚠️ Muat naik segera</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Award Diterima</div>
+          <div class="stat-val">RM 8,500</div>
+          <div class="stat-change up">✅ Diselesaikan 2024</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <!-- KES TERKINI -->
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Kes Terkini</div><div class="card-subtitle">3 kes aktif</div></div>
+            <button style="font-size:12px;font-weight:600;color:var(--myds-blue);background:none;border:none;cursor:pointer;" onclick="showView('cases')">Lihat Semua →</button>
+          </div>
+          <div>
+            <div class="case-item" onclick="showView('cases')">
+              <div class="case-icon-wrap case-icon-hearing">📋</div>
+              <div class="case-meta">
+                <div class="case-ref">MB-2024-KL-08421</div>
+                <div class="case-title">Ahmad Qaiyum v. Syarikat Logistik Maju Sdn Bhd</div>
+                <div class="case-tags"><span class="tag tag-amber">Gaji Tertunggak</span><span class="tag tag-blue">Akta Kerja 1955</span></div>
+              </div>
+              <div class="case-right">
+                <div class="case-date">Difailkan 12 Nov 2024</div>
+                <span class="status-badge s-hearing">🔵 Perbicaraan</span>
+              </div>
+            </div>
+            <div class="case-item" onclick="showView('mediation')">
+              <div class="case-icon-wrap case-icon-mediation">🤝</div>
+              <div class="case-meta">
+                <div class="case-ref">MB-2024-KL-07331</div>
+                <div class="case-title">Ahmad Qaiyum v. Platform Gig Express (M) Bhd</div>
+                <div class="case-tags"><span class="tag tag-purple">Pekerja Gig</span><span class="tag tag-blue">Platform Digital</span></div>
+              </div>
+              <div class="case-right">
+                <div class="case-date">Difailkan 5 Okt 2024</div>
+                <span class="status-badge s-mediation">🟣 Mediasi</span>
+              </div>
+            </div>
+            <div class="case-item" onclick="showView('awards')">
+              <div class="case-icon-wrap case-icon-award">⚖️</div>
+              <div class="case-meta">
+                <div class="case-ref">MB-2023-KL-04120</div>
+                <div class="case-title">Ahmad Qaiyum v. Kedai Makanan Barakah</div>
+                <div class="case-tags"><span class="tag tag-green">Award Dibuat</span></div>
+              </div>
+              <div class="case-right">
+                <div class="case-date">12 Mac 2024</div>
+                <span class="status-badge s-awarded">✅ Selesai</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Kronologi Kes MB-2024-KL-08421</div><div class="card-subtitle">Ahmad Qaiyum v. Syarikat Logistik Maju</div></div>
+          </div>
+          <div class="card-body">
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot dot-done">✓</div>
+                <div class="timeline-date">12 Nov 2024</div>
+                <div class="timeline-title">Tuntutan Difailkan</div>
+                <div class="timeline-desc">Borang 8A diterima. Yuran RM 40 dibayar.</div>
+                <span class="timeline-badge">✓ Lengkap</span>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot dot-done">✓</div>
+                <div class="timeline-date">20 Nov 2024</div>
+                <div class="timeline-title">Notis Diserahkan</div>
+                <div class="timeline-desc">Notis dihantar kepada pihak responden secara e-mel & surat berdaftar.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot dot-done">✓</div>
+                <div class="timeline-date">8 Dis 2024</div>
+                <div class="timeline-title">Sesi Mediasi</div>
+                <div class="timeline-desc">Mediasi dilaksanakan. Gagal mencapai penyelesaian.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot dot-active">●</div>
+                <div class="timeline-date">5 Jun 2026 · 10:00 AM</div>
+                <div class="timeline-title">Perbicaraan Penuh (Sesi 1)</div>
+                <div class="timeline-desc">Perbicaraan dalam talian. Hadir dengan semua dokumen sokongan.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot dot-pending"></div>
+                <div class="timeline-date">TBC</div>
+                <div class="timeline-title">Keputusan & Award</div>
+                <div class="timeline-desc">Keputusan hakim akan diwartakan dalam sistem ini.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FILING VIEW -->
+    <div id="view-filing" style="display:none">
+      <div class="page-header">
+        <div class="page-title-block">
+          <div class="breadcrumb"><a href="#">e-Mahkamah Buruh</a> › Failkan Tuntutan</div>
+          <h2 class="page-title">Failkan Tuntutan Baharu</h2>
+          <p class="page-sub">Kemukakan tuntutan anda secara dalam talian. Prosiding ditadbir di bawah Akta Kerja 1955 (Seksyen 69)</p>
+        </div>
+      </div>
+
+      <div class="alert alert-court">
+        ⚖️ Tuntutan Mahkamah Buruh adalah untuk tuntutan gaji tidak melebihi <strong>RM 100,000</strong>. Untuk tuntutan lebih tinggi atau kes pembuangan kerja, sila rujuk <a href="#" style="font-weight:700">Mahkamah Perusahaan</a>.
+      </div>
+
+      <div class="wizard-steps-bar">
+        <div class="wstep">
+          <div class="wstep-num done">✓</div>
+          <div class="wstep-label done">Jenis Tuntutan</div>
+        </div>
+        <div class="wstep-connector done"></div>
+        <div class="wstep">
+          <div class="wstep-num active">2</div>
+          <div class="wstep-label active">Butiran Kes</div>
+        </div>
+        <div class="wstep-connector"></div>
+        <div class="wstep">
+          <div class="wstep-num pending">3</div>
+          <div class="wstep-label pending">Dokumen</div>
+        </div>
+        <div class="wstep-connector"></div>
+        <div class="wstep">
+          <div class="wstep-num pending">4</div>
+          <div class="wstep-label pending">Pembayaran Yuran</div>
+        </div>
+        <div class="wstep-connector"></div>
+        <div class="wstep">
+          <div class="wstep-num pending">5</div>
+          <div class="wstep-label pending">Semak & Hantar</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" style="background:var(--myds-blue);">
+          <div>
+            <div class="card-title" style="color:#fff;">Langkah 2: Butiran Tuntutan</div>
+            <div class="card-subtitle" style="color:rgba(255,255,255,0.7)">Borang Tuntutan MB-8A — Tuntutan Gaji Tertunggak</div>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div style="margin-bottom:24px;">
+            <div class="form-section-title" style="font-size:12px;font-weight:700;color:var(--myds-muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--myds-border);">Maklumat Penuntut (Pekerja)</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nama Penuh <span class="req">*</span></label>
+                <input type="text" value="Ahmad Qaiyum bin Rahmat" readonly style="background:#f8f9fc;color:var(--myds-muted)">
+                <p class="hint">Diisi secara automatik daripada akaun MyDigitalID anda</p>
+              </div>
+              <div class="form-group">
+                <label>No. Kad Pengenalan <span class="req">*</span></label>
+                <input type="text" value="900121-14-XXXX" readonly style="background:#f8f9fc;color:var(--myds-muted)">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>E-mel <span class="req">*</span></label>
+                <input type="email" placeholder="email@anda.com">
+              </div>
+              <div class="form-group">
+                <label>No. Telefon <span class="req">*</span></label>
+                <input type="tel" placeholder="01x-xxxxxxx">
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:24px;">
+            <div class="form-section-title" style="font-size:12px;font-weight:700;color:var(--myds-muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--myds-border);">Maklumat Responden (Majikan)</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nama Syarikat / Majikan <span class="req">*</span></label>
+                <input type="text" placeholder="Nama penuh syarikat atau individu">
+              </div>
+              <div class="form-group">
+                <label>No. Pendaftaran SSM</label>
+                <input type="text" placeholder="202301XXXXXX">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Alamat Syarikat <span class="req">*</span></label>
+              <textarea rows="3" placeholder="No., Jalan, Taman, Poskod, Negeri"></textarea>
+            </div>
+          </div>
+
+          <div style="margin-bottom:24px;">
+            <div class="form-section-title" style="font-size:12px;font-weight:700;color:var(--myds-muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--myds-border);">Butiran Tuntutan</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Jenis Tuntutan <span class="req">*</span></label>
+                <select>
+                  <option>Gaji Tertunggak (Seksyen 69)</option>
+                  <option>Gaji Minimum Tidak Dipatuhi</option>
+                  <option>Caruman KWSP/PERKESO Tidak Dibayar</option>
+                  <option>Bayaran Cuti Tahunan</option>
+                  <option>Bayaran Gantian Notis</option>
+                  <option>Elaun Penamatan (Retrenchment)</option>
+                  <option>Hak Pekerja Gig / Platform</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Jumlah Tuntutan (RM) <span class="req">*</span></label>
+                <input type="number" placeholder="0.00" min="0" max="100000" step="0.01">
+                <p class="hint">Had maksimum: RM 100,000</p>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tempoh Tuntutan (Dari) <span class="req">*</span></label>
+                <input type="date">
+              </div>
+              <div class="form-group">
+                <label>Tempoh Tuntutan (Hingga) <span class="req">*</span></label>
+                <input type="date">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Perihal Tuntutan <span class="req">*</span></label>
+              <textarea rows="5" placeholder="Huraikan dengan terperinci tuntutan anda, termasuk kiraan gaji, tempoh, dan sejarah pekerjaan yang berkaitan..."></textarea>
+            </div>
+          </div>
+
+          <div style="background:var(--myds-surface);border-radius:var(--radius-md);padding:16px;">
+            <div style="font-size:13px;font-weight:600;margin-bottom:8px;">📄 Anggaran Yuran Pemfailan</div>
+            <div class="payment-summary">
+              <div class="payment-line"><span class="payment-label">Yuran pemfailan asas</span><span class="payment-value">RM 20.00</span></div>
+              <div class="payment-line"><span class="payment-label">Yuran pentadbiran</span><span class="payment-value">RM 20.00</span></div>
+              <div class="payment-line"><span class="payment-label">Jumlah perlu dibayar</span><span class="payment-value">RM 40.00</span></div>
+            </div>
+            <p style="font-size:12px;color:var(--myds-subtle);margin-top:8px;">Boleh dibayar melalui FPX, kad kredit/debit, atau kaunter pejabat JTK. Yuran tidak akan dikembalikan.</p>
+          </div>
+
+        </div>
+        <div style="padding:18px;border-top:1px solid var(--myds-border);background:var(--myds-surface);display:flex;justify-content:space-between;align-items:center;">
+          <button style="padding:9px 18px;background:transparent;color:var(--myds-muted);border:1px solid var(--myds-border);border-radius:var(--radius-md);font-weight:600;font-size:13px;cursor:pointer;" onclick="showView('dashboard')">← Kembali</button>
+          <button class="btn-gold-sm">Seterusnya: Muat Naik Dokumen →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEARING VIEW -->
+    <div id="view-hearing" style="display:none">
+      <div class="page-header">
+        <div class="page-title-block">
+          <div class="breadcrumb"><a href="#">e-Mahkamah Buruh</a> › Perbicaraan Dalam Talian</div>
+          <h2 class="page-title">Bilik Perbicaraan Maya</h2>
+          <p class="page-sub">Kes: MB-2024-KL-08421 · Ahmad Qaiyum v. Syarikat Logistik Maju Sdn Bhd</p>
+        </div>
+      </div>
+
+      <div class="hearing-room">
+        <div class="live-badge"><span class="live-dot"></span> LANGSUNG — Perbicaraan Dalam Talian</div>
+        <div class="hearing-room-title">Mahkamah Buruh Kuala Lumpur — Sesi 1</div>
+        <div class="hearing-room-sub">5 Jun 2026 · 10:00 AM – 12:00 PM · Hakim: YAA Puan Sri Norasyikin Musa</div>
+        <div class="participants-grid">
+          <div class="participant-card">
+            <div class="participant-avatar pa-judge">YAA</div>
+            <div style="display:flex;align-items:center;gap:5px;margin-top:-2px;"><span class="participant-status ps-live"></span></div>
+            <div class="participant-name">YAA Puan Sri Norasyikin</div>
+            <div class="participant-role">Hakim Mahkamah Buruh</div>
+          </div>
+          <div class="participant-card">
+            <div class="participant-avatar pa-claimant">AQ</div>
+            <div style="display:flex;align-items:center;gap:5px;margin-top:-2px;"><span class="participant-status ps-live"></span></div>
+            <div class="participant-name">Ahmad Qaiyum bin Rahmat</div>
+            <div class="participant-role">Penuntut</div>
+          </div>
+          <div class="participant-card">
+            <div class="participant-avatar pa-respondent">SL</div>
+            <div style="display:flex;align-items:center;gap:5px;margin-top:-2px;"><span class="participant-status ps-live"></span></div>
+            <div class="participant-name">Sykt Logistik Maju Sdn Bhd</div>
+            <div class="participant-role">Responden (Peguam Hadir)</div>
+          </div>
+        </div>
+        <div class="hearing-controls">
+          <button class="ctrl-btn ctrl-primary">🎙️ Mikrofon Aktif</button>
+          <button class="ctrl-btn ctrl-secondary">📹 Video Aktif</button>
+          <button class="ctrl-btn ctrl-secondary">📤 Kongsi Dokumen</button>
+          <button class="ctrl-btn ctrl-secondary">💬 Sembang</button>
+          <button class="ctrl-btn ctrl-secondary">✋ Angkat Tangan</button>
+          <button class="ctrl-btn ctrl-danger">✕ Tinggalkan</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div class="card">
+          <div class="card-header"><div class="card-title">📋 Agenda Perbicaraan</div></div>
+          <div class="card-body">
+            <table>
+              <tr><td style="width:70px;color:var(--myds-subtle);font-size:12px;">10:00</td><td><strong>Pembukaan</strong> — Ucapan hakim, identifikasi pihak</td></tr>
+              <tr><td style="color:var(--myds-subtle);font-size:12px;">10:15</td><td><strong style="color:var(--myds-blue);">→ Semasa</strong> — Hujahan penuntut</td></tr>
+              <tr><td style="color:var(--myds-subtle);font-size:12px;">11:00</td><td>Hujahan responden</td></tr>
+              <tr><td style="color:var(--myds-subtle);font-size:12px;">11:30</td><td>Soal balas saksi</td></tr>
+              <tr><td style="color:var(--myds-subtle);font-size:12px;">11:50</td><td>Arahan hakim & penangguhan</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">📝 Nota Prosiding (Automatik)</div></div>
+          <div class="card-body" style="font-size:12px;color:var(--myds-muted);font-family:monospace;line-height:1.8;max-height:160px;overflow-y:auto;">
+            [10:02] Sesi dimulakan oleh YAA<br>
+            [10:03] Semua pihak hadir disahkan<br>
+            [10:05] Pihak penuntut dikenalpasti sebagai Ahmad Qaiyum<br>
+            [10:07] Peguam Responden: Encik Fadhillah Yusof<br>
+            [10:12] Hakim membaca ringkasan kes<br>
+            [10:16] Penuntut memulakan hujahan...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AWARDS VIEW -->
+    <div id="view-awards" style="display:none">
+      <div class="page-header">
+        <div class="page-title-block">
+          <div class="breadcrumb"><a href="#">e-Mahkamah Buruh</a> › Keputusan & Award</div>
+          <h2 class="page-title">Keputusan & Award Mahkamah</h2>
+          <p class="page-sub">Semua keputusan rasmi yang telah dikeluarkan</p>
+        </div>
+      </div>
+
+      <div class="award-box">
+        <div class="award-header">
+          <span style="font-size:22px;">⚖️</span>
+          <div>
+            <h3>Award Mahkamah Buruh — MB-2023-KL-04120</h3>
+            <span>Ahmad Qaiyum v. Kedai Makanan Barakah · 12 Mac 2024</span>
+          </div>
+          <button class="ctrl-btn ctrl-secondary" style="margin-left:auto;background:rgba(255,255,255,0.2);color:#fff;border-color:rgba(255,255,255,0.3);">📄 Muat Turun PDF</button>
+        </div>
+        <div class="award-body">
+          <div class="award-amount">RM 8,500.00</div>
+          <div class="award-sub">Jumlah keseluruhan award yang diperolehi</div>
+          <div class="award-details">
+            <div class="award-detail-item">
+              <div class="award-detail-label">Gaji Tertunggak (3 bulan)</div>
+              <div class="award-detail-value">RM 6,000.00</div>
+            </div>
+            <div class="award-detail-item">
+              <div class="award-detail-label">Bayaran Gantian Notis</div>
+              <div class="award-detail-value">RM 2,000.00</div>
+            </div>
+            <div class="award-detail-item">
+              <div class="award-detail-label">Faedah (8% setahun)</div>
+              <div class="award-detail-value">RM 500.00</div>
+            </div>
+            <div class="award-detail-item">
+              <div class="award-detail-label">Tarikh Perlu Dibayar</div>
+              <div class="award-detail-value">26 Mac 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">📋 Semua Keputusan</div></div>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>No. Kes</th>
+                <th>Pihak Responden</th>
+                <th>Jumlah Award</th>
+                <th>Tarikh</th>
+                <th>Status Pembayaran</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="monospace">MB-2023-KL-04120</span></td>
+                <td>Kedai Makanan Barakah</td>
+                <td><strong>RM 8,500</strong></td>
+                <td>12 Mac 2024</td>
+                <td><span class="status-badge s-awarded">✅ Dibayar</span></td>
+                <td><a href="#" style="font-size:12px;font-weight:600;color:var(--myds-blue);">PDF →</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MEDIATION VIEW -->
+    <div id="view-mediation" style="display:none">
+      <div class="page-header">
+        <div class="page-title-block">
+          <div class="breadcrumb"><a href="#">e-Mahkamah Buruh</a> › Mediasi</div>
+          <h2 class="page-title">Sesi Mediasi Dalam Talian</h2>
+          <p class="page-sub">Penyelesaian alternatif sebelum perbicaraan penuh — lebih cepat, lebih murah</p>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        ✅ Mediasi berjaya menyelesaikan <strong>68%</strong> kes Mahkamah Buruh tanpa perlu ke perbicaraan. Tempoh purata: 14 hari vs 6–12 bulan perbicaraan penuh.
+      </div>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;">
+        <div class="card">
+          <div class="card-header"><div class="card-title">🤝 Kes MB-2024-KL-07331 — Sesi Mediasi</div></div>
+          <div class="card-body">
+            <table>
+              <tr style=""><th>Butiran</th><th>Maklumat</th></tr>
+              <tr><td style="color:var(--myds-muted);font-size:13px;">Mediator</td><td style="font-size:13px;font-weight:600;">Pn. Rosnani binti Abdullah</td></tr>
+              <tr><td style="color:var(--myds-muted);font-size:13px;">Tarikh</td><td style="font-size:13px;">12 Jun 2026, 2:30 PM</td></tr>
+              <tr><td style="color:var(--myds-muted);font-size:13px;">Platform</td><td style="font-size:13px;">Video-konferens dalam talian</td></tr>
+              <tr><td style="color:var(--myds-muted);font-size:13px;">Status</td><td><span class="status-badge s-mediation">Sedang Berjalan</span></td></tr>
+            </table>
+            <div style="margin-top:16px;">
+              <label>Tawaran Penyelesaian (RM) <span class="req">*</span></label>
+              <input type="number" placeholder="Masukkan jumlah tawaran anda" style="margin-bottom:10px;">
+              <label>Syarat Penyelesaian</label>
+              <textarea rows="4" placeholder="Tuliskan syarat-syarat penyelesaian yang boleh diterima..."></textarea>
+              <button class="btn-gold-sm" style="margin-top:10px;width:100%;">Hantar Tawaran Penyelesaian</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><div class="card-title">📅 Kalendar</div></div>
+          <div class="card-body">
+            <div class="cal-header">
+              <button class="cal-nav-btn">‹</button>
+              <span class="cal-title">Jun 2026</span>
+              <button class="cal-nav-btn">›</button>
+            </div>
+            <div class="cal-grid">
+              <div class="cal-day-label">Ah</div><div class="cal-day-label">Is</div><div class="cal-day-label">Se</div><div class="cal-day-label">Ra</div><div class="cal-day-label">Kh</div><div class="cal-day-label">Ju</div><div class="cal-day-label">Sa</div>
+              <div class="cal-day other-month">1</div><div class="cal-day other-month">2</div><div class="cal-day other-month">3</div><div class="cal-day other-month">4</div>
+              <div class="cal-day has-hearing">5</div><div class="cal-day other-month">6</div><div class="cal-day other-month">7</div>
+              <div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div>
+              <div class="cal-day has-hearing">12</div><div class="cal-day">13</div><div class="cal-day">14</div>
+              <div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div>
+              <div class="cal-day has-deadline">19</div><div class="cal-day">20</div><div class="cal-day">21</div>
+              <div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day today">25</div>
+              <div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div>
+              <div class="cal-day">29</div><div class="cal-day">30</div>
+            </div>
+            <div style="margin-top:12px;font-size:11px;display:flex;flex-direction:column;gap:5px;">
+              <div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;background:#fef3c7;border-radius:2px;display:inline-block;"></span><span style="color:var(--myds-muted);">Tarikh perbicaraan/mediasi</span></div>
+              <div style="display:flex;align-items:center;gap:6px;"><span style="width:10px;height:10px;background:var(--myds-danger-light);border-radius:2px;display:inline-block;"></span><span style="color:var(--myds-muted);">Tarikh akhir dokumen</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCUMENTS VIEW -->
+    <div id="view-documents" style="display:none">
+      <div class="page-header">
+        <div class="page-title-block">
+          <div class="breadcrumb"><a href="#">e-Mahkamah Buruh</a> › Dokumen</div>
+          <h2 class="page-title">Pengurusan Dokumen</h2>
+          <p class="page-sub">Muat naik dan urus semua dokumen berkaitan kes anda</p>
+        </div>
+        <button class="btn-primary-sm">+ Muat Naik Dokumen</button>
+      </div>
+
+      <div class="alert alert-warning">
+        ⚠️ 2 dokumen wajib belum dimuat naik untuk kes <strong>MB-2024-KL-08421</strong>. Tarikh akhir: <strong>19 Jun 2026</strong>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><div class="card-title">📁 Dokumen Kes MB-2024-KL-08421</div></div>
+        <div class="card-body">
+          <div class="doc-item">
+            <div class="doc-icon">📄</div>
+            <div>
+              <div class="doc-name">Slip_Gaji_Jan-Mac_2024.pdf</div>
+              <div class="doc-meta">Slip Gaji · 2.1 MB · Dimuat naik 15 Nov 2024</div>
+            </div>
+            <div class="doc-status"><span class="doc-verify doc-ok">✓ Disahkan</span></div>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon">📋</div>
+            <div>
+              <div class="doc-name">Kontrak_Pekerjaan_2022.pdf</div>
+              <div class="doc-meta">Kontrak · 1.4 MB · Dimuat naik 15 Nov 2024</div>
+            </div>
+            <div class="doc-status"><span class="doc-verify doc-ok">✓ Disahkan</span></div>
+          </div>
+          <div class="doc-item">
+            <div class="doc-icon">📧</div>
+            <div>
+              <div class="doc-name">Surat_Tuntutan_Gaji.pdf</div>
+              <div class="doc-meta">Surat · 380 KB · Dimuat naik 20 Nov 2024</div>
+            </div>
+            <div class="doc-status"><span class="doc-verify doc-pending">⏳ Semakan</span></div>
+          </div>
+          <div class="doc-item" style="background:#fffbeb;">
+            <div class="doc-icon" style="background:#fef3c7;border-color:#fbbf24;">⚠️</div>
+            <div>
+              <div class="doc-name" style="color:var(--myds-warning);">Penyata Bank (3 bulan) — DIPERLUKAN</div>
+              <div class="doc-meta">Belum dimuat naik · Tarikh akhir: 19 Jun 2026</div>
+            </div>
+            <div class="doc-status"><span class="doc-verify doc-required">✗ Diperlukan</span></div>
+          </div>
+          <div class="doc-item" style="background:#fffbeb;">
+            <div class="doc-icon" style="background:#fef3c7;border-color:#fbbf24;">⚠️</div>
+            <div>
+              <div class="doc-name" style="color:var(--myds-warning);">Saksi Sokongan (Surat Akuan) — DIPERLUKAN</div>
+              <div class="doc-meta">Belum dimuat naik · Tarikh akhir: 19 Jun 2026</div>
+            </div>
+            <div class="doc-status"><span class="doc-verify doc-required">✗ Diperlukan</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASES VIEW -->
+    <div id="view-cases" style="display:none">
+      <div class="page-header">
+        <div class="page-title-block">
+          <div class="breadcrumb"><a href="#">e-Mahkamah Buruh</a> › Kes Saya</div>
+          <h2 class="page-title">Kes Saya</h2>
+          <p class="page-sub">3 kes aktif dan sejarah kes</p>
+        </div>
+        <button class="btn-gold-sm" onclick="showView('filing')">+ Failkan Tuntutan Baharu</button>
+      </div>
+      <div class="card">
+        <div class="card-body" style="padding:0;">
+          <table>
+            <thead><tr><th>No. Kes</th><th>Pihak Responden</th><th>Jenis Tuntutan</th><th>Jumlah (RM)</th><th>Status</th><th>Tindakan</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="monospace">MB-2024-KL-08421</span></td>
+                <td>Syarikat Logistik Maju Sdn Bhd</td>
+                <td>Gaji Tertunggak</td>
+                <td><strong>RM 14,200</strong></td>
+                <td><span class="status-badge s-hearing">Perbicaraan</span></td>
+                <td><a href="#" style="font-size:12px;font-weight:600;color:var(--myds-blue);" onclick="showView('hearing')">Masuk Bilik →</a></td>
+              </tr>
+              <tr>
+                <td><span class="monospace">MB-2024-KL-07331</span></td>
+                <td>Platform Gig Express (M) Bhd</td>
+                <td>Hak Pekerja Gig</td>
+                <td><strong>RM 6,800</strong></td>
+                <td><span class="status-badge s-mediation">Mediasi</span></td>
+                <td><a href="#" style="font-size:12px;font-weight:600;color:var(--myds-blue);" onclick="showView('mediation')">Lihat →</a></td>
+              </tr>
+              <tr>
+                <td><span class="monospace">MB-2023-KL-04120</span></td>
+                <td>Kedai Makanan Barakah</td>
+                <td>Gaji Tertunggak</td>
+                <td><strong>RM 8,500</strong></td>
+                <td><span class="status-badge s-awarded">Award</span></td>
+                <td><a href="#" style="font-size:12px;font-weight:600;color:var(--myds-blue);" onclick="showView('awards')">Award →</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Jabatan Tenaga Kerja Semenanjung Malaysia · e-Mahkamah Buruh · Dibangunkan mengikut MYDS (Malaysia Government Design System)</p>
+  <p style="margin-top:6px;opacity:0.6;">Untuk sokongan teknikal: <a href="#">support@jtksm.gov.my</a> · 03-8000 8000</p>
+</footer>
+
+<script>
+function showView(id) {
+  document.querySelectorAll('[id^="view-"]').forEach(el => el.style.display = 'none');
+  const el = document.getElementById('view-' + id);
+  if (el) el.style.display = 'block';
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const map = {dashboard:'Papan Pemuka',filing:'Failkan Tuntutan',hearing:'Perbicaraan',awards:'Keputusan',mediation:'Mediasi',documents:'Dokumen',cases:'Kes Saya'};
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.textContent.trim().startsWith(Object.values(map)[Object.keys(map).indexOf(id)] || '###')) n.classList.add('active');
+  });
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
