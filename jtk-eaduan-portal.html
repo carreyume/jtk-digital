@@ -4,1038 +4,643 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>e-Aduan JTK — Jabatan Tenaga Kerja Semenanjung Malaysia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --myds-blue: #1e3a6b;
-  --myds-blue-mid: #2d5aa0;
-  --myds-blue-light: #dce8f8;
-  --myds-blue-accent: #0055b8;
-  --myds-red: #cc0001;
-  --myds-yellow: #ffd600;
-  --myds-teal: #0d7d6b;
-  --myds-teal-light: #e0f5f1;
-  --myds-amber: #b45309;
-  --myds-amber-light: #fef3c7;
-  --myds-surface: #f8f9fc;
-  --myds-white: #ffffff;
-  --myds-border: #d1d9e6;
-  --myds-text: #1a1d2e;
-  --myds-muted: #5a6478;
-  --myds-subtle: #8892a4;
-  --myds-success: #166534;
-  --myds-success-light: #dcfce7;
-  --myds-danger: #991b1b;
-  --myds-danger-light: #fee2e2;
-  --myds-warning-light: #fffbeb;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#042C53;--blue:#185FA5;--blue-mid:#2d5aa0;--blue-lt:#dce8f8;--blue-acc:#0055b8;
+  --blue-pale:#E6F1FB;--blue-100:#B5D4F4;
+  --red:#cc0001;--yellow:#FFD600;--teal:#0d7d6b;--teal-lt:#e0f5f1;
+  --amber:#b45309;--amber-lt:#fef3c7;
+  --surface:#f8f9fc;--white:#fff;--border:#d1d9e6;
+  --text:#1a1d2e;--muted:#5a6478;--subtle:#8892a4;
+  --success:#166534;--success-lt:#dcfce7;--danger:#991b1b;--danger-lt:#fee2e2;
+  --r-sm:4px;--r-md:8px;--r-lg:12px;
 }
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--surface);color:var(--text);font-size:15px;line-height:1.6;}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body { background: var(--myds-surface); color: var(--myds-text); font-size: 15px; line-height: 1.6; }
-
-/* GOV BANNER */
-.gov-banner {
-  background: var(--myds-blue);
-  color: #fff;
-  font-size: 12px;
-  padding: 6px 0;
-  border-bottom: 3px solid var(--myds-yellow);
-}
-.gov-banner-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.jata { width: 22px; height: auto; }
-.gov-label { opacity: 0.9; }
-.gov-label strong { font-weight: 600; }
-.gov-verify { margin-left: auto; display: flex; align-items: center; gap: 6px; opacity: 0.75; cursor: pointer; }
-.gov-verify:hover { opacity: 1; }
-.lock-icon { font-size: 11px; }
+/* GOV */
+.gov-banner{background:var(--navy);border-bottom:3px solid var(--yellow);padding:6px 0;}
+.gov-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:10px;}
+.gov-text{font-size:12px;color:rgba(255,255,255,.82);}
+.gov-text strong{color:#fff;font-weight:600;}
+.gov-verify{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.5);cursor:pointer;text-decoration:none;}
+.gov-verify:hover{color:rgba(255,255,255,.9);}
 
 /* HEADER */
-header {
-  background: var(--myds-white);
-  border-bottom: 1px solid var(--myds-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-}
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 14px 24px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.logo-block { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; }
-.logo-emblem {
-  width: 46px; height: 46px;
-  background: var(--myds-blue);
-  border-radius: var(--radius-md);
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-weight: 700; font-size: 13px; letter-spacing: 0.5px;
-  flex-shrink: 0;
-}
-.logo-text p { font-size: 11px; color: var(--myds-muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
-.logo-text h1 { font-size: 16px; font-weight: 700; color: var(--myds-blue); line-height: 1.2; }
-.header-nav { margin-left: auto; display: flex; align-items: center; gap: 4px; }
-.nav-link {
-  padding: 7px 14px; border-radius: var(--radius-md);
-  font-size: 13px; font-weight: 500; color: var(--myds-muted);
-  text-decoration: none; transition: all 0.15s;
-  border: 1px solid transparent;
-}
-.nav-link:hover { background: var(--myds-surface); color: var(--myds-blue); }
-.nav-link.active { background: var(--myds-blue-light); color: var(--myds-blue); font-weight: 600; }
-.nav-btn {
-  padding: 8px 16px; border-radius: var(--radius-md);
-  background: var(--myds-blue); color: #fff; font-size: 13px; font-weight: 600;
-  border: none; cursor: pointer; transition: background 0.15s;
-}
-.nav-btn:hover { background: var(--myds-blue-mid); }
+header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.hdr{max-width:1200px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:16px;}
+.logo-lnk{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;}
+.logo-em{width:42px;height:42px;background:var(--navy);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;}
+.logo-tx p{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;font-weight:500;}
+.logo-tx h1{font-size:15px;font-weight:700;color:var(--navy);line-height:1.2;}
+.hdr-nav{margin-left:auto;display:flex;align-items:center;gap:3px;}
+.nl{padding:7px 13px;border-radius:var(--r-md);font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:all .15s;border:1px solid transparent;}
+.nl:hover{background:var(--surface);color:var(--navy);}
+.nl.act{background:var(--blue-lt);color:var(--navy);font-weight:600;}
+.hdr-user{display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--border);font-size:13px;font-weight:500;}
+.user-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;}
+.logout-btn{padding:7px 14px;border-radius:var(--r-md);border:1px solid var(--border);background:transparent;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;}
+.logout-btn:hover{border-color:var(--red);color:var(--red);}
+.hamburger{display:none;padding:7px;border:none;background:none;cursor:pointer;border-radius:var(--r-md);}
+.hamburger span{display:block;width:19px;height:2px;background:var(--navy);margin:4px 0;border-radius:2px;transition:all .25s;}
 
 /* HERO */
-.hero {
-  background: linear-gradient(135deg, var(--myds-blue) 0%, #1e4d8c 60%, #0d3d7a 100%);
-  padding: 60px 24px 0;
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E") repeat;
-}
-.hero-inner { max-width: 1200px; margin: 0 auto; position: relative; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.12); color: #fff;
-  padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500;
-  border: 1px solid rgba(255,255,255,0.2); margin-bottom: 18px;
-}
-.hero h2 { font-size: 36px; font-weight: 700; color: #fff; line-height: 1.25; max-width: 600px; margin-bottom: 16px; }
-.hero h2 span { color: var(--myds-yellow); }
-.hero p { font-size: 16px; color: rgba(255,255,255,0.8); max-width: 520px; margin-bottom: 32px; line-height: 1.7; }
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
-.btn-primary {
-  padding: 12px 24px; background: var(--myds-yellow); color: var(--myds-blue);
-  border: none; border-radius: var(--radius-md); font-weight: 700; font-size: 14px;
-  cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-primary:hover { background: #ffe033; transform: translateY(-1px); }
-.btn-outline-white {
-  padding: 12px 24px; background: transparent; color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.4); border-radius: var(--radius-md);
-  font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.15s; text-decoration: none;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
-
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-  background: rgba(255,255,255,0.1);
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-}
-.stat-item {
-  padding: 20px 24px;
-  background: rgba(255,255,255,0.05);
-}
-.stat-item:first-child { border-radius: var(--radius-lg) 0 0 0; }
-.stat-item:last-child { border-radius: 0 var(--radius-lg) 0 0; }
-.stat-num { font-size: 26px; font-weight: 700; color: #fff; }
-.stat-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; font-weight: 500; }
+.hero{background:var(--navy);padding:52px 24px 0;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+.hero-in{max-width:1200px;margin:0 auto;position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid rgba(255,255,255,.18);margin-bottom:16px;}
+.hero h2{font-size:clamp(26px,4vw,36px);font-weight:700;color:#fff;line-height:1.25;max-width:560px;margin-bottom:14px;}
+.hero h2 span{color:var(--yellow);}
+.hero p{font-size:15px;color:rgba(255,255,255,.75);max-width:500px;margin-bottom:28px;line-height:1.7;}
+.hero-acts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px;}
+.btn-gold{padding:11px 22px;background:var(--yellow);color:var(--navy);border:none;border-radius:var(--r-md);font-weight:700;font-size:13px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;}
+.btn-gold:hover{background:#ffe033;transform:translateY(-1px);}
+.btn-ghost{padding:11px 22px;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);border-radius:var(--r-md);font-weight:600;font-size:13px;cursor:pointer;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;}
+.btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.6);}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border-top:1px solid rgba(255,255,255,.08);}
+.hs{padding:18px 20px;background:rgba(255,255,255,.04);}
+.hs-n{font-size:22px;font-weight:700;color:#fff;}
+.hs-l{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px;font-weight:500;}
 
 /* MAIN */
-main { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+main{max-width:1200px;margin:0 auto;padding:36px 24px;}
 
-/* SECTION TITLES */
-.section-header { margin-bottom: 28px; }
-.section-badge {
-  display: inline-block; background: var(--myds-blue-light); color: var(--myds-blue);
-  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
-  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;
-}
-.section-title { font-size: 22px; font-weight: 700; color: var(--myds-text); margin-bottom: 6px; }
-.section-sub { font-size: 14px; color: var(--myds-muted); }
+/* TABS */
+.tab-nav{display:flex;gap:3px;background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:4px;margin-bottom:28px;width:fit-content;}
+.tab-btn{padding:8px 18px;border:none;background:transparent;border-radius:var(--r-md);font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.tab-btn.act{background:var(--navy);color:#fff;}
+.tab-panel{display:none;}
+.tab-panel.act{display:block;}
 
-/* ALERT */
-.alert {
-  padding: 14px 18px; border-radius: var(--radius-md);
-  display: flex; align-items: flex-start; gap: 12px; margin-bottom: 32px;
-  border: 1px solid;
-}
-.alert-info { background: var(--myds-blue-light); border-color: #93b8e8; }
-.alert-warning { background: var(--myds-amber-light); border-color: #fbbf24; }
-.alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-.alert-info .alert-icon { color: var(--myds-blue-mid); }
-.alert-warning .alert-icon { color: var(--myds-amber); }
-.alert-body strong { font-weight: 600; font-size: 14px; display: block; margin-bottom: 2px; }
-.alert-body p { font-size: 13px; color: var(--myds-muted); }
+/* ALERTS */
+.alert{padding:13px 16px;border-radius:var(--r-md);display:flex;align-items:flex-start;gap:10px;margin-bottom:24px;border:1px solid;font-size:13px;}
+.al-info{background:var(--blue-pale);border-color:var(--blue-100);color:var(--blue);}
+.al-warn{background:var(--amber-lt);border-color:#fbbf24;color:var(--amber);}
+.alert strong{font-weight:600;display:block;margin-bottom:2px;}
+.alert p{color:var(--muted);font-size:12px;}
+
+/* SECTION */
+.sec-hdr{margin-bottom:24px;}
+.sec-badge{display:inline-block;background:var(--blue-pale);color:var(--blue);font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px;}
+.sec-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.sec-sub{font-size:13px;color:var(--muted);}
 
 /* CATEGORY GRID */
-.category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 48px; }
-.cat-card {
-  background: var(--myds-white);
-  border: 1px solid var(--myds-border);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-  color: inherit;
-  display: flex; flex-direction: column; gap: 12px;
-  position: relative;
-  overflow: hidden;
-}
-.cat-card::after {
-  content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-  background: var(--cat-color, var(--myds-blue));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.2s;
-}
-.cat-card:hover { border-color: var(--cat-color, var(--myds-blue)); box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
-.cat-card:hover::after { transform: scaleX(1); }
-.cat-icon {
-  width: 44px; height: 44px; border-radius: var(--radius-md);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  background: var(--cat-bg, var(--myds-blue-light));
-  color: var(--cat-color, var(--myds-blue));
-}
-.cat-title { font-size: 14px; font-weight: 700; color: var(--myds-text); }
-.cat-desc { font-size: 12px; color: var(--myds-muted); line-height: 1.5; }
-.cat-count {
-  margin-top: auto; font-size: 11px; color: var(--myds-subtle);
-  display: flex; align-items: center; gap: 5px;
-}
-.cat-count strong { color: var(--cat-color, var(--myds-blue)); font-weight: 600; }
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px;}
+.cat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;cursor:pointer;transition:all .2s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;}
+.cat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--cat-clr,var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .2s;}
+.cat-card:hover{border-color:var(--cat-clr,var(--blue));box-shadow:0 4px 16px rgba(0,0,0,.07);transform:translateY(-2px);}
+.cat-card:hover::after{transform:scaleX(1);}
+.cat-ico{width:42px;height:42px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--cat-bg,var(--blue-pale));color:var(--cat-clr,var(--blue));}
+.cat-title{font-size:13px;font-weight:700;color:var(--text);}
+.cat-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.cat-cnt{margin-top:auto;font-size:11px;color:var(--subtle);display:flex;align-items:center;gap:4px;}
+.cat-cnt strong{color:var(--cat-clr,var(--blue));font-weight:600;}
 
-/* FORM WIZARD */
-.wizard-card {
-  background: var(--myds-white);
-  border: 1px solid var(--myds-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: 40px;
-}
-.wizard-header {
-  background: var(--myds-blue);
-  padding: 22px 28px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.wizard-title { color: #fff; font-size: 16px; font-weight: 700; }
-.wizard-sub { color: rgba(255,255,255,0.7); font-size: 13px; margin-top: 2px; }
-.wizard-steps { display: flex; gap: 0; margin-right: 8px; }
-.step-dot {
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
-  position: relative;
-}
-.step-dot::after {
-  content: '';
-  position: absolute; left: 100%; top: 50%;
-  transform: translateY(-50%);
-  width: 24px; height: 2px;
-  background: rgba(255,255,255,0.2);
-}
-.step-dot:last-child::after { display: none; }
-.step-dot.done { background: var(--myds-yellow); color: var(--myds-blue); }
-.step-dot.active { background: #fff; color: var(--myds-blue); }
-.step-dot.pending { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); }
+/* WIZARD */
+.wiz-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:36px;}
+.wiz-hdr{background:var(--navy);padding:20px 26px;display:flex;align-items:center;justify-content:space-between;}
+.wiz-hdr-txt h3{color:#fff;font-size:15px;font-weight:700;}
+.wiz-hdr-txt p{color:rgba(255,255,255,.65);font-size:12px;margin-top:2px;}
+.wiz-dots{display:flex;gap:0;}
+.wd{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;position:relative;}
+.wd::after{content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);width:22px;height:2px;background:rgba(255,255,255,.18);}
+.wd:last-child::after{display:none;}
+.wd-done{background:var(--yellow);color:var(--navy);}
+.wd-act{background:#fff;color:var(--navy);}
+.wd-pend{background:rgba(255,255,255,.14);color:rgba(255,255,255,.45);}
+.wiz-body{padding:26px;}
+.wiz-step-lbl{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;}
+.wiz-step-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:22px;}
+.fs-title{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--border);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px;}
+.fg label .req{color:var(--red);margin-left:2px;}
+.fg label .opt{color:var(--subtle);font-weight:400;font-size:11px;margin-left:3px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:var(--r-md);font-size:13px;font-family:inherit;color:var(--text);background:var(--white);transition:all .15s;appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--blue-acc);box-shadow:0 0 0 3px rgba(0,85,184,.1);}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:32px;}
+.fg textarea{resize:vertical;min-height:90px;}
+.fg .hint{font-size:11px;color:var(--subtle);margin-top:4px;}
+.radio-grp{display:flex;flex-direction:column;gap:8px;}
+.ro{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--border);border-radius:var(--r-md);cursor:pointer;transition:all .15s;}
+.ro:hover{border-color:var(--blue-acc);background:var(--blue-pale);}
+.ro input{margin-top:2px;accent-color:var(--blue-acc);flex-shrink:0;}
+.ro-txt strong{font-size:12px;font-weight:600;display:block;margin-bottom:1px;}
+.ro-txt span{font-size:11px;color:var(--muted);}
+.file-drop{border:2px dashed var(--border);border-radius:var(--r-md);padding:24px;text-align:center;cursor:pointer;transition:all .15s;background:var(--surface);}
+.file-drop:hover{border-color:var(--blue-acc);background:var(--blue-pale);}
+.file-drop-ico{font-size:24px;color:var(--subtle);margin-bottom:6px;}
+.file-drop p{font-size:12px;color:var(--muted);}
+.file-drop p strong{color:var(--blue-acc);font-weight:600;}
+.file-drop small{font-size:11px;color:var(--subtle);}
+.wiz-foot{padding:18px 26px;border-top:1px solid var(--border);background:var(--surface);display:flex;justify-content:space-between;align-items:center;}
+.btn-back{padding:9px 18px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:var(--r-md);font-weight:600;font-size:12px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;}
+.btn-back:hover{border-color:var(--blue);color:var(--blue);}
+.btn-nxt{padding:9px 22px;background:var(--navy);color:#fff;border:none;border-radius:var(--r-md);font-weight:600;font-size:12px;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;}
+.btn-nxt:hover{background:var(--blue-mid);}
+.step-ind{font-size:11px;color:var(--subtle);font-weight:500;}
 
-.wizard-body { padding: 28px; }
-.wizard-step-label { font-size: 12px; font-weight: 600; color: var(--myds-blue); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
-.wizard-step-title { font-size: 18px; font-weight: 700; color: var(--myds-text); margin-bottom: 24px; }
-
-.form-section { margin-bottom: 28px; }
-.form-section-title {
-  font-size: 13px; font-weight: 600; color: var(--myds-muted); text-transform: uppercase;
-  letter-spacing: 0.7px; margin-bottom: 16px; padding-bottom: 10px;
-  border-bottom: 1px solid var(--myds-border);
-}
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.form-group { margin-bottom: 16px; }
-.form-group.full { grid-column: 1 / -1; }
-label { display: block; font-size: 13px; font-weight: 600; color: var(--myds-text); margin-bottom: 6px; }
-label span.req { color: var(--myds-red); margin-left: 3px; }
-label span.opt { color: var(--myds-subtle); font-weight: 400; font-size: 12px; margin-left: 4px; }
-input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea {
-  width: 100%; padding: 10px 12px;
-  border: 1px solid var(--myds-border); border-radius: var(--radius-md);
-  font-size: 14px; font-family: inherit; color: var(--myds-text);
-  background: var(--myds-white); transition: border-color 0.15s, box-shadow 0.15s;
-  appearance: none;
-}
-input:focus, select:focus, textarea:focus {
-  outline: none; border-color: var(--myds-blue-accent);
-  box-shadow: 0 0 0 3px rgba(0,85,184,0.12);
-}
-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 12px center;
-  padding-right: 36px;
-}
-textarea { resize: vertical; min-height: 100px; }
-.hint { font-size: 12px; color: var(--myds-subtle); margin-top: 5px; }
-
-/* RADIO GROUP */
-.radio-group { display: flex; flex-direction: column; gap: 10px; }
-.radio-option {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 16px; border: 1px solid var(--myds-border); border-radius: var(--radius-md);
-  cursor: pointer; transition: all 0.15s;
-}
-.radio-option:hover { border-color: var(--myds-blue-accent); background: var(--myds-blue-light); }
-.radio-option input[type="radio"] { margin-top: 2px; accent-color: var(--myds-blue-accent); flex-shrink: 0; }
-.radio-option-text strong { font-size: 13px; font-weight: 600; display: block; margin-bottom: 2px; }
-.radio-option-text span { font-size: 12px; color: var(--myds-muted); }
-
-/* FILE UPLOAD */
-.file-drop {
-  border: 2px dashed var(--myds-border); border-radius: var(--radius-md);
-  padding: 28px; text-align: center; cursor: pointer; transition: all 0.15s;
-  background: var(--myds-surface);
-}
-.file-drop:hover { border-color: var(--myds-blue-accent); background: var(--myds-blue-light); }
-.file-drop-icon { font-size: 28px; color: var(--myds-subtle); margin-bottom: 8px; }
-.file-drop p { font-size: 13px; color: var(--myds-muted); }
-.file-drop p strong { color: var(--myds-blue-accent); font-weight: 600; cursor: pointer; }
-.file-drop small { font-size: 11px; color: var(--myds-subtle); }
-
-/* WIZARD FOOTER */
-.wizard-footer {
-  padding: 20px 28px;
-  border-top: 1px solid var(--myds-border);
-  background: var(--myds-surface);
-  display: flex; justify-content: space-between; align-items: center;
-}
-.btn-back {
-  padding: 10px 20px; background: transparent; color: var(--myds-muted);
-  border: 1px solid var(--myds-border); border-radius: var(--radius-md);
-  font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.15s;
-  display: flex; align-items: center; gap: 6px;
-}
-.btn-back:hover { border-color: var(--myds-blue); color: var(--myds-blue); }
-.btn-next {
-  padding: 10px 24px; background: var(--myds-blue); color: #fff;
-  border: none; border-radius: var(--radius-md);
-  font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.15s;
-  display: flex; align-items: center; gap: 6px;
-}
-.btn-next:hover { background: var(--myds-blue-mid); }
-.step-indicator { font-size: 12px; color: var(--myds-subtle); font-weight: 500; }
-
-/* STATUS TRACKER */
-.status-section { margin-bottom: 40px; }
-.status-table-wrap {
-  background: var(--myds-white);
-  border: 1px solid var(--myds-border); border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-.status-table-header {
-  padding: 16px 20px; background: var(--myds-surface);
-  border-bottom: 1px solid var(--myds-border);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.status-table-header h3 { font-size: 14px; font-weight: 700; }
-.search-input-wrap { position: relative; }
-.search-input-wrap input { padding-left: 32px; width: 220px; font-size: 13px; }
-.search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--myds-subtle); font-size: 14px; }
-table { width: 100%; border-collapse: collapse; }
-th {
-  text-align: left; padding: 11px 16px; font-size: 11px;
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px;
-  color: var(--myds-muted); background: var(--myds-surface);
-  border-bottom: 1px solid var(--myds-border);
-}
-td { padding: 14px 16px; font-size: 13px; border-bottom: 1px solid #f0f2f6; }
-tr:last-child td { border-bottom: none; }
-tr:hover td { background: var(--myds-surface); }
-.ref-code { font-family: monospace; font-size: 12px; font-weight: 600; color: var(--myds-blue); }
-.status-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
-}
-.status-pending { background: var(--myds-amber-light); color: var(--myds-amber); }
-.status-progress { background: var(--myds-blue-light); color: var(--myds-blue); }
-.status-resolved { background: var(--myds-success-light); color: var(--myds-success); }
-.status-rejected { background: var(--myds-danger-light); color: var(--myds-danger); }
-.priority-badge {
-  display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase;
-}
-.p-high { background: #fee2e2; color: #991b1b; }
-.p-medium { background: #fef3c7; color: #92400e; }
-.p-low { background: #f0fdf4; color: #166534; }
-.action-link { font-size: 12px; color: var(--myds-blue); font-weight: 600; text-decoration: none; }
-.action-link:hover { text-decoration: underline; }
+/* TABLE */
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;}
+.tbl-hdr{padding:14px 18px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.tbl-hdr h3{font-size:13px;font-weight:700;}
+.si-wrap{position:relative;}
+.si-wrap input{padding-left:30px;width:210px;font-size:12px;}
+.si-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--subtle);font-size:13px;}
+table{width:100%;border-collapse:collapse;}
+th{text-align:left;padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);background:var(--surface);border-bottom:1px solid var(--border);}
+td{padding:13px 14px;font-size:13px;border-bottom:1px solid #f0f2f6;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#fafbfc;}
+.ref{font-family:monospace;font-size:11px;font-weight:700;color:var(--blue);}
+.sb{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;}
+.s-pending{background:var(--amber-lt);color:var(--amber);}
+.s-progress{background:var(--blue-pale);color:var(--blue);}
+.s-resolved{background:var(--success-lt);color:var(--success);}
+.s-rejected{background:var(--danger-lt);color:var(--danger);}
+.pb{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;text-transform:uppercase;}
+.p-hi{background:#fee2e2;color:#991b1b;}
+.p-md{background:#fef3c7;color:#92400e;}
+.p-lo{background:#f0fdf4;color:#166534;}
+.al{font-size:12px;color:var(--blue);font-weight:700;cursor:pointer;text-decoration:none;background:none;border:none;padding:4px 8px;border-radius:var(--r-sm);transition:background .15s;}
+.al:hover{background:var(--blue-pale);}
 
 /* FAQ */
-.faq-section { margin-bottom: 40px; }
-.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.faq-item {
-  background: var(--myds-white); border: 1px solid var(--myds-border);
-  border-radius: var(--radius-md); overflow: hidden;
-}
-.faq-question {
-  padding: 16px 18px; font-size: 13px; font-weight: 600; color: var(--myds-text);
-  cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
-  transition: background 0.15s;
-}
-.faq-question:hover { background: var(--myds-surface); }
-.faq-answer { padding: 0 18px 16px; font-size: 13px; color: var(--myds-muted); line-height: 1.6; display: none; }
-.faq-item.open .faq-answer { display: block; }
-.faq-item.open .faq-toggle { transform: rotate(180deg); }
-.faq-toggle { font-size: 14px; color: var(--myds-subtle); flex-shrink: 0; transition: transform 0.2s; }
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.faq-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;}
+.faq-q{padding:14px 16px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;transition:background .15s;}
+.faq-q:hover{background:var(--surface);}
+.faq-a{padding:0 16px 14px;font-size:12px;color:var(--muted);line-height:1.6;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-tog{transform:rotate(180deg);}
+.faq-tog{font-size:13px;color:var(--subtle);flex-shrink:0;transition:transform .2s;}
 
-/* CONTACT STRIP */
-.contact-strip {
-  background: var(--myds-blue); color: #fff;
-  border-radius: var(--radius-lg); padding: 28px 32px;
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
-  margin-bottom: 40px; align-items: center;
-}
-.contact-item { display: flex; align-items: flex-start; gap: 14px; }
-.contact-icon {
-  width: 42px; height: 42px; background: rgba(255,255,255,0.12);
-  border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
-}
-.contact-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.7px; opacity: 0.65; margin-bottom: 3px; }
-.contact-value { font-size: 14px; font-weight: 600; }
-.contact-sub { font-size: 12px; opacity: 0.7; margin-top: 2px; }
-
-/* FOOTER */
-footer {
-  background: var(--myds-text);
-  color: rgba(255,255,255,0.8);
-  padding: 40px 24px 24px;
-}
-.footer-inner { max-width: 1200px; margin: 0 auto; }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
-.footer-brand h3 { color: #fff; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
-.footer-brand p { font-size: 12px; opacity: 0.65; line-height: 1.6; max-width: 260px; }
-.footer-col h4 { color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 14px; }
-.footer-col a { display: block; font-size: 12px; color: rgba(255,255,255,0.6); text-decoration: none; margin-bottom: 8px; transition: color 0.15s; }
-.footer-col a:hover { color: #fff; }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 20px;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 12px; color: rgba(255,255,255,0.45);
-}
-.footer-logos { display: flex; gap: 16px; align-items: center; }
-.footer-logo-badge {
-  background: rgba(255,255,255,0.08); padding: 4px 10px;
-  border-radius: var(--radius-sm); font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6);
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .category-grid { grid-template-columns: repeat(2, 1fr); }
-  .form-row { grid-template-columns: 1fr; }
-  .hero-stats { grid-template-columns: repeat(2, 1fr); }
-  .footer-top { grid-template-columns: 1fr 1fr; }
-  .contact-strip { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .category-grid { grid-template-columns: 1fr; }
-  .faq-grid { grid-template-columns: 1fr; }
-  .hero h2 { font-size: 26px; }
-  .header-nav { display: none; }
-}
-
-/* TAB SYSTEM */
-.tab-nav {
-  display: flex; gap: 4px; background: var(--myds-surface);
-  border: 1px solid var(--myds-border); border-radius: var(--radius-lg);
-  padding: 4px; margin-bottom: 28px; width: fit-content;
-}
-.tab-btn {
-  padding: 8px 20px; border: none; background: transparent;
-  border-radius: var(--radius-md); font-size: 13px; font-weight: 600;
-  color: var(--myds-muted); cursor: pointer; transition: all 0.15s;
-}
-.tab-btn.active { background: var(--myds-white); color: var(--myds-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+/* CONTACT */
+.contact-strip{background:var(--navy);border-radius:var(--r-lg);padding:24px 28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:36px;align-items:center;}
+.ci{display:flex;align-items:flex-start;gap:12px;}
+.ci-ico{width:38px;height:38px;background:rgba(255,255,255,.1);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ci-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.6px;opacity:.6;margin-bottom:2px;}
+.ci-val{font-size:13px;font-weight:600;color:#fff;}
+.ci-sub{font-size:11px;opacity:.65;color:#fff;margin-top:1px;}
 
 /* PHASE BANNER */
-.phase-banner {
-  background: var(--myds-amber-light); border-left: 4px solid #f59e0b;
-  padding: 10px 16px; font-size: 13px; color: #92400e;
-  display: flex; align-items: center; gap: 10px;
-}
-.phase-tag {
-  background: #f59e0b; color: #fff; font-size: 10px; font-weight: 700;
-  padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;
-}
+.phase-banner{background:#78350f;color:#fef3c7;padding:8px 24px;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;}
+.phase-tag{background:#f59e0b;color:#1c0700;font-size:9px;font-weight:800;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+
+/* FOOTER */
+footer{background:var(--text);}
+.ft-in{max-width:1200px;margin:0 auto;padding:32px 24px 20px;}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:24px;}
+.ft-brand h3{color:#fff;font-size:14px;font-weight:700;margin-bottom:8px;}
+.ft-brand p{font-size:12px;opacity:.55;line-height:1.6;max-width:240px;}
+.ft-col h4{color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;}
+.ft-col a{display:block;font-size:12px;color:rgba(255,255,255,.55);text-decoration:none;margin-bottom:7px;transition:color .15s;}
+.ft-col a:hover{color:#fff;}
+.ft-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.ft-bot span{font-size:11px;color:rgba(255,255,255,.35);}
+.ft-chips{display:flex;gap:6px;}
+.ft-chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;color:rgba(255,255,255,.4);letter-spacing:.4px;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--white);border-radius:var(--r-lg);width:100%;max-width:760px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.modal-hdr{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;position:sticky;top:0;background:var(--white);z-index:1;}
+.modal-hdr-left h3{font-size:16px;font-weight:700;color:var(--navy);}
+.modal-hdr-left p{font-size:12px;color:var(--muted);margin-top:2px;}
+.modal-close{padding:6px;border:none;background:none;cursor:pointer;color:var(--muted);border-radius:var(--r-md);transition:all .15s;font-size:18px;line-height:1;flex-shrink:0;}
+.modal-close:hover{background:var(--surface);color:var(--text);}
+.modal-body{padding:24px;}
+.modal-section{margin-bottom:24px;}
+.modal-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.info-item{background:var(--surface);border-radius:var(--r-md);padding:12px;}
+.info-item .lbl{font-size:11px;color:var(--subtle);font-weight:500;margin-bottom:4px;}
+.info-item .val{font-size:13px;font-weight:600;color:var(--text);}
+.info-item .val.mono{font-family:monospace;font-size:12px;}
+.timeline{position:relative;padding-left:24px;}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border);}
+.tl-item{position:relative;padding-bottom:18px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{position:absolute;left:-24px;top:3px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;border:2px solid var(--white);}
+.tl-done{background:var(--success);box-shadow:0 0 0 2px #86efac;}
+.tl-act{background:var(--blue);box-shadow:0 0 0 2px var(--blue-100);}
+.tl-pend{background:var(--border);}
+.tl-date{font-size:11px;color:var(--subtle);margin-bottom:2px;font-weight:500;}
+.tl-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.tl-desc{font-size:12px;color:var(--muted);}
+.tl-badge{display:inline-block;background:var(--success-lt);color:var(--success);font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:3px;}
+.modal-doc{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f0f2f6;}
+.modal-doc:last-child{border-bottom:none;}
+.doc-ico{width:32px;height:32px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.doc-name{font-size:13px;font-weight:600;color:var(--text);}
+.doc-meta{font-size:11px;color:var(--subtle);margin-top:1px;}
+.doc-status{margin-left:auto;}
+.dv{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:700;}
+.dv-ok{background:var(--success-lt);color:var(--success);}
+.dv-pend{background:var(--amber-lt);color:var(--amber);}
+.modal-foot{padding:16px 24px;border-top:1px solid var(--border);background:var(--surface);display:flex;gap:10px;justify-content:flex-end;}
+.btn-dl{padding:9px 18px;background:var(--navy);color:#fff;border:none;border-radius:var(--r-md);font-size:13px;font-weight:600;cursor:pointer;}
+.btn-dl:hover{background:var(--blue-mid);}
+.btn-sec{padding:9px 18px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:var(--r-md);font-size:13px;font-weight:600;cursor:pointer;}
+.btn-sec:hover{border-color:var(--blue);color:var(--blue);}
+
+/* RESPONSIVE */
+@media(max-width:900px){.cat-grid{grid-template-columns:repeat(2,1fr)}.form-row{grid-template-columns:1fr}.hero-stats{grid-template-columns:repeat(2,1fr)}.ft-top{grid-template-columns:1fr 1fr}.contact-strip{grid-template-columns:1fr}}
+@media(max-width:600px){.cat-grid{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}.hdr-nav{display:none}.info-grid{grid-template-columns:1fr}.hero h2{font-size:24px}}
 </style>
 </head>
 <body>
 
-<!-- PHASE BANNER -->
 <div class="phase-banner">
   <span class="phase-tag">Beta</span>
-  Sistem ini dalam fasa ujian. Untuk aduan segera, hubungi talian bebas tol JTK: <strong style="margin-left:4px">1-800-88-8064</strong>
+  Sistem dalam fasa ujian. Untuk aduan segera: <strong style="margin-left:3px">1-800-88-8064</strong>
 </div>
 
-<!-- GOV BANNER -->
 <div class="gov-banner">
-  <div class="gov-banner-inner">
-    <svg class="jata" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="8" y="4" width="24" height="30" rx="2" fill="#FFD600" opacity="0.9"/>
-      <rect x="12" y="8" width="16" height="20" rx="1" fill="#1e3a6b"/>
-      <polygon points="20,6 23,12 17,12" fill="#CC0001"/>
-      <rect x="10" y="36" width="20" height="3" rx="1" fill="#FFD600" opacity="0.7"/>
-      <rect x="12" y="41" width="16" height="3" rx="1" fill="#FFD600" opacity="0.5"/>
-    </svg>
-    <span class="gov-label"><strong>Laman web rasmi Kerajaan Malaysia</strong> — Portal rasmi Jabatan Tenaga Kerja Semenanjung Malaysia</span>
-    <span class="gov-verify">
-      <span class="lock-icon">🔒</span>
-      Sahkan laman web ini
-    </span>
+  <div class="gov-inner">
+    <svg width="20" height="25" viewBox="0 0 40 50" fill="none"><rect x="7" y="3" width="26" height="32" rx="2.5" fill="#FFD600" opacity=".9"/><rect x="11" y="7" width="18" height="22" rx="1.5" fill="#042C53"/><polygon points="20,5 24,12 16,12" fill="#CC0001"/><rect x="9" y="37" width="22" height="3.5" rx="1.5" fill="#FFD600" opacity=".65"/></svg>
+    <span class="gov-text"><strong>Laman web rasmi Kerajaan Malaysia</strong> &mdash; Jabatan Tenaga Kerja Semenanjung Malaysia</span>
+    <a href="#" class="gov-verify">🔒 Sahkan laman web</a>
   </div>
 </div>
 
-<!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <a class="logo-block" href="#">
-      <div class="logo-emblem">JTK</div>
-      <div class="logo-text">
-        <p>Portal Rasmi</p>
-        <h1>Jabatan Tenaga Kerja Semenanjung Malaysia</h1>
-      </div>
+  <div class="hdr">
+    <a class="logo-lnk" href="index.html">
+      <div class="logo-em">JTK</div>
+      <div class="logo-tx"><p>Portal Rasmi</p><h1>Jabatan Tenaga Kerja Semenanjung Malaysia</h1></div>
     </a>
-    <nav class="header-nav">
-      <a href="#" class="nav-link active">e-Aduan</a>
-      <a href="#" class="nav-link">Perkhidmatan</a>
-      <a href="#" class="nav-link">Semak Status</a>
-      <a href="#" class="nav-link">Panduan</a>
-      <button class="nav-btn" onclick="showTab('form')">Buat Aduan</button>
+    <nav class="hdr-nav">
+      <a href="#" class="nl act" onclick="showTab('home');return false">e-Aduan</a>
+      <a href="#" class="nl" onclick="showTab('form');return false">Buat Aduan</a>
+      <a href="#" class="nl" onclick="showTab('track');return false">Semak Status</a>
+      <a href="#" class="nl" onclick="showTab('faq');return false">FAQ</a>
     </nav>
+    <div class="hdr-user"><span class="user-dot"></span>Mohd Farid bin Zulkifli</div>
+    <button class="logout-btn" onclick="window.location.href='jtk-login.html'">Log Keluar</button>
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">
-      ⚡ Didigitalkan sepenuhnya · Akses 24/7
+  <div class="hero-in">
+    <div class="hero-badge">⚡ Didigitalkan Sepenuhnya · 24/7</div>
+    <h2>Portal <span>e-Aduan</span> Buruh<br>Berpusat &amp; Dalam Talian</h2>
+    <p>Kemukakan aduan berkaitan pekerja gig, pematuhan Akta Kerja 1955, keselamatan pekerjaan, dan hak pekerja secara mudah dan selamat.</p>
+    <div class="hero-acts">
+      <a href="#" class="btn-gold" onclick="showTab('form');return false">📝 Kemukakan Aduan</a>
+      <a href="#" class="btn-ghost" onclick="showTab('track');return false">🔍 Semak Status</a>
     </div>
-    <h2>Portal <span>e-Aduan</span> Buruh<br>Berpusat & Dalam Talian</h2>
-    <p>Kemukakan aduan berkaitan pekerja gig, pematuhan Akta Kerja 1955, keselamatan pekerjaan, dan hak pekerja secara mudah, cepat dan selamat.</p>
-    <div class="hero-actions">
-      <a href="#" class="btn-primary" onclick="showTab('form')">
-        📝 Kemukakan Aduan Sekarang
-      </a>
-      <a href="#" class="btn-outline-white" onclick="showTab('track')">
-        🔍 Semak Status Aduan
-      </a>
-    </div>
-
     <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">24,318</div>
-        <div class="stat-label">Aduan diterima 2024</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">91.4%</div>
-        <div class="stat-label">Kadar penyelesaian</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">14 hari</div>
-        <div class="stat-label">Purata masa respons</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">16 negeri</div>
-        <div class="stat-label">Liputan seluruh Semenanjung</div>
-      </div>
+      <div class="hs"><div class="hs-n">24,318</div><div class="hs-l">Aduan diterima 2024</div></div>
+      <div class="hs"><div class="hs-n">91.4%</div><div class="hs-l">Kadar penyelesaian</div></div>
+      <div class="hs"><div class="hs-n">14 hari</div><div class="hs-l">Purata masa respons</div></div>
+      <div class="hs"><div class="hs-n">16 negeri</div><div class="hs-l">Liputan Semenanjung</div></div>
     </div>
   </div>
 </section>
 
-<!-- MAIN CONTENT -->
 <main>
-
-  <!-- TAB NAV -->
-  <div class="tab-nav" style="margin-top:8px;">
-    <button class="tab-btn active" onclick="showTab('home')">Laman Utama</button>
+  <div class="tab-nav" style="margin-top:6px">
+    <button class="tab-btn act" onclick="showTab('home')">Laman Utama</button>
     <button class="tab-btn" onclick="showTab('form')">Buat Aduan</button>
     <button class="tab-btn" onclick="showTab('track')">Semak Status</button>
-    <button class="tab-btn" onclick="showTab('faq')">Soalan Lazim</button>
+    <button class="tab-btn" onclick="showTab('faq')">FAQ</button>
   </div>
 
-  <!-- HOME TAB -->
-  <div class="tab-panel active" id="tab-home">
-
-    <div class="alert alert-info">
-      <span class="alert-icon">ℹ️</span>
-      <div class="alert-body">
-        <strong>Pekerja Gig & Platform — Perlindungan Baharu 2024</strong>
-        <p>Pekerja platform seperti penghantar makanan, pemandu e-hailing, dan pekerja bebas kini dilindungi di bawah kerangka perlindungan sosial JTK. Kemukakan aduan jika hak anda dilanggar.</p>
-      </div>
+  <!-- HOME -->
+  <div class="tab-panel act" id="tab-home">
+    <div class="alert al-info">
+      ℹ️ <div><strong>Pekerja Gig &amp; Platform — Perlindungan Baharu 2024</strong><p>Pekerja platform seperti penghantar makanan, pemandu e-hailing, dan pekerja bebas kini dilindungi di bawah kerangka JTK. Kemukakan aduan jika hak anda dilanggar.</p></div>
     </div>
-
-    <div class="section-header">
-      <span class="section-badge">Kategori Aduan</span>
-      <h2 class="section-title">Pilih jenis aduan anda</h2>
-      <p class="section-sub">Pilih kategori yang paling berkaitan dengan isu pekerjaan anda</p>
+    <div class="sec-hdr">
+      <span class="sec-badge">Kategori Aduan</span>
+      <h2 class="sec-title">Pilih jenis aduan anda</h2>
+      <p class="sec-sub">Klik kategori yang berkaitan dengan isu pekerjaan anda</p>
     </div>
-
-    <div class="category-grid">
-      <a class="cat-card" href="#" style="--cat-color:#0055b8;--cat-bg:#dce8f8" onclick="showTab('form')">
-        <div class="cat-icon">👷</div>
-        <div>
-          <div class="cat-title">Pekerja Gig & Platform</div>
-          <div class="cat-desc">Hak pekerja platform digital, bayaran ditangguh, perlindungan kemalangan, penamatan tanpa notis wajar</div>
-        </div>
-        <div class="cat-count"><strong>Baharu</strong> · Dilindungi Akta 2024</div>
-      </a>
-      <a class="cat-card" href="#" style="--cat-color:#0d7d6b;--cat-bg:#e0f5f1" onclick="showTab('form')">
-        <div class="cat-icon">💰</div>
-        <div>
-          <div class="cat-title">Gaji & Upah</div>
-          <div class="cat-desc">Gaji tidak dibayar, potongan tidak sah, gaji minimum tidak dipatuhi, elaun ditangguh</div>
-        </div>
-        <div class="cat-count"><strong>6,241</strong> aduan 2024</div>
-      </a>
-      <a class="cat-card" href="#" style="--cat-color:#7c3aed;--cat-bg:#ede9fe" onclick="showTab('form')">
-        <div class="cat-icon">🏭</div>
-        <div>
-          <div class="cat-title">Keselamatan & Kesihatan (OSH)</div>
-          <div class="cat-desc">Persekitaran kerja berbahaya, kecederaan tempat kerja, peralatan tidak selamat, OSHA tidak dipatuhi</div>
-        </div>
-        <div class="cat-count"><strong>3,882</strong> aduan 2024</div>
-      </a>
-      <a class="cat-card" href="#" style="--cat-color:#b45309;--cat-bg:#fef3c7" onclick="showTab('form')">
-        <div class="cat-icon">📋</div>
-        <div>
-          <div class="cat-title">Kontrak & Syarat Pekerjaan</div>
-          <div class="cat-desc">Kontrak tidak diberikan, cuti tidak dibenarkan, waktu kerja melebihi had, faedah dikurangkan</div>
-        </div>
-        <div class="cat-count"><strong>4,119</strong> aduan 2024</div>
-      </a>
-      <a class="cat-card" href="#" style="--cat-color:#991b1b;--cat-bg:#fee2e2" onclick="showTab('form')">
-        <div class="cat-icon">🚫</div>
-        <div>
-          <div class="cat-title">Diskriminasi & Gangguan</div>
-          <div class="cat-desc">Diskriminasi jantina, bangsa, agama; gangguan seksual; pembullian di tempat kerja</div>
-        </div>
-        <div class="cat-count"><strong>1,903</strong> aduan 2024</div>
-      </a>
-      <a class="cat-card" href="#" style="--cat-color:#0d5c8c;--cat-bg:#e0eef7" onclick="showTab('form')">
-        <div class="cat-icon">🌏</div>
-        <div>
-          <div class="cat-title">Pekerja Asing & Permit</div>
-          <div class="cat-desc">Eksploitasi pekerja asing, masalah permit kerja, pasport dirampas, kerja paksa</div>
-        </div>
-        <div class="cat-count"><strong>2,173</strong> aduan 2024</div>
-      </a>
+    <div class="cat-grid">
+      <a class="cat-card" href="#" style="--cat-clr:#0055b8;--cat-bg:#dce8f8" onclick="showTab('form');return false"><div class="cat-ico">👷</div><div class="cat-title">Pekerja Gig &amp; Platform</div><div class="cat-desc">Hak pekerja platform digital, bayaran ditangguh, perlindungan kemalangan</div><div class="cat-cnt"><strong>Baharu</strong> · Akta 2022</div></a>
+      <a class="cat-card" href="#" style="--cat-clr:#0d7d6b;--cat-bg:#e0f5f1" onclick="showTab('form');return false"><div class="cat-ico">💰</div><div class="cat-title">Gaji &amp; Upah</div><div class="cat-desc">Gaji tidak dibayar, potongan tidak sah, gaji minimum tidak dipatuhi</div><div class="cat-cnt"><strong>6,241</strong> aduan 2024</div></a>
+      <a class="cat-card" href="#" style="--cat-clr:#7c3aed;--cat-bg:#ede9fe" onclick="showTab('form');return false"><div class="cat-ico">🏭</div><div class="cat-title">Keselamatan (OSH)</div><div class="cat-desc">Persekitaran kerja berbahaya, kecederaan, OSHA tidak dipatuhi</div><div class="cat-cnt"><strong>3,882</strong> aduan 2024</div></a>
+      <a class="cat-card" href="#" style="--cat-clr:#b45309;--cat-bg:#fef3c7" onclick="showTab('form');return false"><div class="cat-ico">📋</div><div class="cat-title">Kontrak &amp; Syarat</div><div class="cat-desc">Cuti tidak dibenarkan, waktu kerja melebihi had, faedah dikurangkan</div><div class="cat-cnt"><strong>4,119</strong> aduan 2024</div></a>
+      <a class="cat-card" href="#" style="--cat-clr:#991b1b;--cat-bg:#fee2e2" onclick="showTab('form');return false"><div class="cat-ico">🚫</div><div class="cat-title">Diskriminasi</div><div class="cat-desc">Diskriminasi jantina, bangsa, agama; gangguan seksual di tempat kerja</div><div class="cat-cnt"><strong>1,903</strong> aduan 2024</div></a>
+      <a class="cat-card" href="#" style="--cat-clr:#0d5c8c;--cat-bg:#e0eef7" onclick="showTab('form');return false"><div class="cat-ico">🌏</div><div class="cat-title">Pekerja Asing</div><div class="cat-desc">Eksploitasi pekerja asing, permit kerja, pasport dirampas</div><div class="cat-cnt"><strong>2,173</strong> aduan 2024</div></a>
     </div>
-
-    <!-- CONTACT -->
     <div class="contact-strip">
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-label">Talian Bebas Tol</div>
-          <div class="contact-value">1-800-88-8064</div>
-          <div class="contact-sub">Isnin – Jumaat, 8 pagi – 5 petang</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <div class="contact-label">E-mel Rasmi</div>
-          <div class="contact-value">aduan@jtksm.gov.my</div>
-          <div class="contact-sub">Respons dalam 2 hari bekerja</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">🏢</div>
-        <div>
-          <div class="contact-label">Pejabat Ibu Pejabat</div>
-          <div class="contact-value">Putrajaya (Presint 2)</div>
-          <div class="contact-sub">Atau pejabat negeri terdekat</div>
-        </div>
-      </div>
+      <div class="ci"><div class="ci-ico">📞</div><div><div class="ci-lbl">Talian Bebas Tol</div><div class="ci-val">1-800-88-8064</div><div class="ci-sub">Isnin–Jumaat, 8 pagi–5 petang</div></div></div>
+      <div class="ci"><div class="ci-ico">📧</div><div><div class="ci-lbl">E-mel Rasmi</div><div class="ci-val">aduan@jtksm.gov.my</div><div class="ci-sub">Respons dalam 2 hari bekerja</div></div></div>
+      <div class="ci"><div class="ci-ico">🏢</div><div><div class="ci-lbl">Ibu Pejabat</div><div class="ci-val">Putrajaya (Presint 2)</div><div class="ci-sub">Atau pejabat negeri terdekat</div></div></div>
     </div>
-
   </div>
 
-  <!-- FORM TAB -->
+  <!-- FORM -->
   <div class="tab-panel" id="tab-form">
-
-    <div class="alert alert-warning">
-      <span class="alert-icon">⚠️</span>
-      <div class="alert-body">
-        <strong>Maklumat Penting Sebelum Memulakan</strong>
-        <p>Aduan palsu atau aduan yang tidak berasas boleh diambil tindakan undang-undang. Pastikan semua maklumat yang dikemukakan adalah benar dan tepat.</p>
+    <div class="alert al-warn">⚠️ <div><strong>Maklumat Penting</strong><p>Aduan palsu boleh diambil tindakan undang-undang. Pastikan semua maklumat benar dan tepat.</p></div></div>
+    <div class="wiz-card">
+      <div class="wiz-hdr">
+        <div class="wiz-hdr-txt"><h3>Borang e-Aduan JTK</h3><p>Langkah 2 daripada 4 — Butiran Aduan</p></div>
+        <div class="wiz-dots"><div class="wd wd-done">✓</div><div class="wd wd-act">2</div><div class="wd wd-pend">3</div><div class="wd wd-pend">4</div></div>
       </div>
+      <div class="wiz-body">
+        <div class="wiz-step-lbl">Langkah 2 daripada 4</div>
+        <div class="wiz-step-title">Butiran Aduan &amp; Syarikat</div>
+        <div class="fs-title" style="margin-bottom:14px">Kategori Aduan</div>
+        <div class="form-row fg"><div class="fg"><label>Jenis Aduan <span class="req">*</span></label><select><option>— Pilih Kategori —</option><option>Pekerja Gig &amp; Platform Digital</option><option>Gaji &amp; Upah Tertunggak</option><option>OSH — Keselamatan Pekerjaan</option><option>Kontrak &amp; Syarat Pekerjaan</option><option>Diskriminasi &amp; Gangguan</option><option>Pekerja Asing &amp; Permit</option><option>Penamatan Khidmat</option></select></div><div class="fg"><label>Tarikh Kejadian <span class="req">*</span></label><input type="date"></div></div>
+        <div class="fs-title" style="margin-bottom:14px;margin-top:8px">Maklumat Majikan</div>
+        <div class="form-row"><div class="fg"><label>Nama Syarikat / Platform <span class="req">*</span></label><input type="text" placeholder="cth: Grab Malaysia, Shopee Express"></div><div class="fg"><label>No. SSM <span class="opt">(jika diketahui)</span></label><input type="text" placeholder="202301012345"></div></div>
+        <div class="form-row"><div class="fg"><label>Negeri <span class="req">*</span></label><select><option>— Pilih Negeri —</option><option>Selangor</option><option>Kuala Lumpur</option><option>Johor</option><option>Perak</option><option>Pulau Pinang</option><option>Melaka</option><option>Negeri Sembilan</option><option>Pahang</option><option>Terengganu</option><option>Kelantan</option><option>Kedah</option><option>Perlis</option></select></div><div class="fg"><label>Bandar</label><input type="text" placeholder="cth: Petaling Jaya"></div></div>
+        <div class="fs-title" style="margin-bottom:14px;margin-top:8px">Status &amp; Perihal</div>
+        <div class="fg"><label>Jenis Status Pekerjaan <span class="req">*</span></label><div class="radio-grp"><label class="ro"><input type="radio" name="emp" value="gig"><div class="ro-txt"><strong>Pekerja Gig / Platform</strong><span>Melalui aplikasi atau platform digital</span></div></label><label class="ro"><input type="radio" name="emp" value="perm"><div class="ro-txt"><strong>Pekerja Tetap / Sepenuh Masa</strong><span>Kontrak rasmi atau tetap</span></div></label><label class="ro"><input type="radio" name="emp" value="contract"><div class="ro-txt"><strong>Pekerja Kontrak / Sementara</strong><span>Kontrak tempoh tetap atau sub-kontrak</span></div></label></div></div>
+        <div class="fg" style="margin-top:14px"><label>Huraian Aduan <span class="req">*</span></label><textarea rows="5" placeholder="Terangkan apa yang berlaku, termasuk tarikh, pihak yang terlibat, dan kerugian yang dialami..."></textarea><p class="hint">Minimum 50 patah perkataan. Sertakan nombor rujukan, nama individu, dan jumlah tuntutan jika berkaitan.</p></div>
+        <div class="fg"><label>Jumlah Tuntutan (RM) <span class="opt">(jika berkaitan)</span></label><input type="text" placeholder="cth: 3500.00"></div>
+        <div class="fs-title" style="margin-bottom:14px;margin-top:8px">Dokumen Sokongan</div>
+        <div class="file-drop"><div class="file-drop-ico">📎</div><p><strong>Muat naik dokumen</strong> atau seret &amp; lepas</p><p style="margin-top:3px">Slip gaji, kontrak, tangkapan skrin, e-mel, gambar</p><small>PDF, JPG, PNG, DOCX · Maks 10MB setiap fail · 5 fail</small></div>
+      </div>
+      <div class="wiz-foot"><button class="btn-back" onclick="showTab('home')">← Kembali</button><span class="step-ind">Langkah 2 / 4</span><button class="btn-nxt">Seterusnya →</button></div>
     </div>
-
-    <div class="wizard-card">
-      <div class="wizard-header">
-        <div>
-          <div class="wizard-title">Borang e-Aduan JTK</div>
-          <div class="wizard-sub">Langkah 1 daripada 4 — Maklumat Peribadi</div>
-        </div>
-        <div class="wizard-steps">
-          <div class="step-dot done">✓</div>
-          <div class="step-dot active">2</div>
-          <div class="step-dot pending">3</div>
-          <div class="step-dot pending">4</div>
-        </div>
-      </div>
-
-      <div class="wizard-body">
-        <div class="wizard-step-label">Langkah 2 daripada 4</div>
-        <div class="wizard-step-title">Butiran Aduan & Syarikat</div>
-
-        <div class="form-section">
-          <div class="form-section-title">Kategori Aduan</div>
-          <div class="form-group">
-            <label>Jenis Aduan <span class="req">*</span></label>
-            <select>
-              <option value="">— Pilih Kategori —</option>
-              <option>Pekerja Gig & Platform Digital</option>
-              <option>Gaji & Upah Tertunggak</option>
-              <option>Keselamatan & Kesihatan Pekerjaan (OSH)</option>
-              <option>Kontrak & Syarat Pekerjaan</option>
-              <option>Diskriminasi & Gangguan Seksual</option>
-              <option>Pekerja Asing & Permit Kerja</option>
-              <option>Penamatan Khidmat & Redundansi</option>
-              <option>Lain-lain</option>
-            </select>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Akta / Perundangan Berkaitan <span class="req">*</span></label>
-              <select>
-                <option>Akta Kerja 1955</option>
-                <option>Akta Keselamatan & Kesihatan Pekerjaan 1994</option>
-                <option>Akta Gaji Minimum 2012</option>
-                <option>Akta Perhubungan Perusahaan 1967</option>
-                <option>Akta Pekerja (Pindaan) 2022 — Gig</option>
-                <option>Tidak Pasti</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Tarikh Kejadian <span class="req">*</span></label>
-              <input type="date">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Maklumat Majikan / Syarikat</div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Nama Syarikat / Platform <span class="req">*</span></label>
-              <input type="text" placeholder="cth: Grab Malaysia, Shopee Express">
-            </div>
-            <div class="form-group">
-              <label>No. Pendaftaran SSM <span class="opt">(jika diketahui)</span></label>
-              <input type="text" placeholder="cth: 202301012345">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Negeri <span class="req">*</span></label>
-              <select>
-                <option>— Pilih Negeri —</option>
-                <option>Selangor</option>
-                <option>Kuala Lumpur</option>
-                <option>Johor</option>
-                <option>Perak</option>
-                <option>Pulau Pinang</option>
-                <option>Melaka</option>
-                <option>Negeri Sembilan</option>
-                <option>Pahang</option>
-                <option>Terengganu</option>
-                <option>Kelantan</option>
-                <option>Kedah</option>
-                <option>Perlis</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Daerah / Bandar</label>
-              <input type="text" placeholder="cth: Petaling Jaya">
-            </div>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Perihal Aduan</div>
-          <div class="form-group">
-            <label>Jenis Status Pekerjaan Anda <span class="req">*</span></label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="emptype" value="gig">
-                <div class="radio-option-text">
-                  <strong>Pekerja Gig / Platform</strong>
-                  <span>Penunggang, pemandu, pekerja bebas melalui aplikasi atau platform digital</span>
-                </div>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="emptype" value="perm">
-                <div class="radio-option-text">
-                  <strong>Pekerja Tetap / Sepenuh Masa</strong>
-                  <span>Bekerja dengan kontrak rasmi atau secara tetap</span>
-                </div>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="emptype" value="contract">
-                <div class="radio-option-text">
-                  <strong>Pekerja Kontrak / Sementara</strong>
-                  <span>Kontrak tempoh tetap, sub-kontrak, atau pekerja agensi</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Huraian Aduan <span class="req">*</span></label>
-            <textarea rows="5" placeholder="Terangkan dengan jelas apa yang berlaku, termasuk tarikh, pihak yang terlibat, dan kerugian yang dialami..."></textarea>
-            <p class="hint">Minimum 50 patah perkataan. Sertakan sebarang nombor rujukan, nama individu yang terlibat, dan jumlah tuntutan jika berkaitan.</p>
-          </div>
-
-          <div class="form-group">
-            <label>Jumlah Tuntutan (RM) <span class="opt">(jika berkaitan)</span></label>
-            <input type="text" placeholder="cth: 3500.00">
-          </div>
-        </div>
-
-        <div class="form-section">
-          <div class="form-section-title">Dokumen Sokongan</div>
-          <div class="file-drop">
-            <div class="file-drop-icon">📎</div>
-            <p><strong>Muat naik dokumen</strong> atau seret & lepas di sini</p>
-            <p style="margin-top:4px">Slip gaji, kontrak, tangkapan skrin, e-mel, gambar</p>
-            <small>Format: PDF, JPG, PNG, DOCX · Saiz maks: 10MB setiap fail · Maksimum 5 fail</small>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="wizard-footer">
-        <button class="btn-back" onclick="showTab('home')">← Kembali</button>
-        <span class="step-indicator">Langkah 2 daripada 4</span>
-        <button class="btn-next">Seterusnya →</button>
-      </div>
-    </div>
-
   </div>
 
-  <!-- TRACK TAB -->
+  <!-- TRACK -->
   <div class="tab-panel" id="tab-track">
-
-    <div class="section-header">
-      <span class="section-badge">Semak Status</span>
-      <h2 class="section-title">Status Aduan Anda</h2>
-      <p class="section-sub">Masukkan nombor rujukan atau cari mengikut nama syarikat</p>
+    <div class="sec-hdr"><span class="sec-badge">Semak Status</span><h2 class="sec-title">Status Aduan Anda</h2><p class="sec-sub">Klik <strong>Lihat →</strong> untuk melihat butiran penuh setiap aduan</p></div>
+    <div style="display:flex;gap:10px;margin-bottom:24px;max-width:520px;">
+      <input type="text" placeholder="No. Rujukan cth: JTK-2024-08421" style="flex:1;padding:9px 12px;border:1px solid var(--border);border-radius:var(--r-md);font-size:13px;font-family:inherit;">
+      <button class="btn-nxt" style="white-space:nowrap;">Cari Aduan</button>
     </div>
-
-    <div style="display:flex;gap:12px;margin-bottom:28px;max-width:560px;">
-      <input type="text" placeholder="No. Rujukan cth: JTK-2024-08421" style="flex:1;">
-      <button class="btn-next" style="white-space:nowrap;">Cari Aduan</button>
-    </div>
-
-    <div class="status-section">
-      <div class="status-table-wrap">
-        <div class="status-table-header">
-          <h3>Senarai Aduan Terkini</h3>
-          <div class="search-input-wrap">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Cari syarikat, kategori...">
-          </div>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>No. Rujukan</th>
-              <th>Kategori</th>
-              <th>Syarikat</th>
-              <th>Tarikh Aduan</th>
-              <th>Status</th>
-              <th>Keutamaan</th>
-              <th>Tindakan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="ref-code">JTK-2024-08421</span></td>
-              <td>Gaji Tertunggak</td>
-              <td>Syarikat Logistik Jaya</td>
-              <td>12 Nov 2024</td>
-              <td><span class="status-badge status-progress">🔵 Dalam Proses</span></td>
-              <td><span class="priority-badge p-high">Tinggi</span></td>
-              <td><a href="#" class="action-link">Lihat →</a></td>
-            </tr>
-            <tr>
-              <td><span class="ref-code">JTK-2024-07334</span></td>
-              <td>Pekerja Gig</td>
-              <td>GrabFood Malaysia</td>
-              <td>5 Okt 2024</td>
-              <td><span class="status-badge status-pending">🟡 Menunggu</span></td>
-              <td><span class="priority-badge p-medium">Sederhana</span></td>
-              <td><a href="#" class="action-link">Lihat →</a></td>
-            </tr>
-            <tr>
-              <td><span class="ref-code">JTK-2024-05891</span></td>
-              <td>OSH – Kemalangan</td>
-              <td>Kilang ABC Sdn Bhd</td>
-              <td>2 Ogo 2024</td>
-              <td><span class="status-badge status-resolved">✅ Diselesaikan</span></td>
-              <td><span class="priority-badge p-high">Tinggi</span></td>
-              <td><a href="#" class="action-link">Lihat →</a></td>
-            </tr>
-            <tr>
-              <td><span class="ref-code">JTK-2024-04122</span></td>
-              <td>Diskriminasi</td>
-              <td>TechCorp MY Sdn Bhd</td>
-              <td>14 Jun 2024</td>
-              <td><span class="status-badge status-resolved">✅ Diselesaikan</span></td>
-              <td><span class="priority-badge p-low">Rendah</span></td>
-              <td><a href="#" class="action-link">Lihat →</a></td>
-            </tr>
-            <tr>
-              <td><span class="ref-code">JTK-2024-03015</span></td>
-              <td>Kontrak – Penamatan</td>
-              <td>Restoran Maju Jaya</td>
-              <td>8 Apr 2024</td>
-              <td><span class="status-badge status-rejected">❌ Ditolak</span></td>
-              <td><span class="priority-badge p-low">Rendah</span></td>
-              <td><a href="#" class="action-link">Lihat →</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="tbl-wrap">
+      <div class="tbl-hdr"><h3>Senarai Aduan Anda</h3><div class="si-wrap"><span class="si-ico">🔍</span><input type="text" placeholder="Cari syarikat, kategori..." style="padding:7px 10px 7px 28px;border:1px solid var(--border);border-radius:var(--r-md);font-size:12px;font-family:inherit;width:200px;"></div></div>
+      <table>
+        <thead><tr><th>No. Rujukan</th><th>Kategori</th><th>Syarikat</th><th>Tarikh</th><th>Status</th><th>Keutamaan</th><th>Tindakan</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ref">JTK-2024-08421</span></td><td>Gaji Tertunggak</td><td>Syarikat Logistik Jaya</td><td>12 Nov 2024</td><td><span class="sb s-progress">🔵 Dalam Proses</span></td><td><span class="pb p-hi">Tinggi</span></td><td><button class="al" onclick="openModal('JTK-2024-08421')">Lihat →</button></td></tr>
+          <tr><td><span class="ref">JTK-2024-07334</span></td><td>Pekerja Gig</td><td>GrabFood Malaysia</td><td>5 Okt 2024</td><td><span class="sb s-pending">🟡 Menunggu</span></td><td><span class="pb p-md">Sederhana</span></td><td><button class="al" onclick="openModal('JTK-2024-07334')">Lihat →</button></td></tr>
+          <tr><td><span class="ref">JTK-2024-05891</span></td><td>OSH – Kemalangan</td><td>Kilang ABC Sdn Bhd</td><td>2 Ogo 2024</td><td><span class="sb s-resolved">✅ Diselesaikan</span></td><td><span class="pb p-hi">Tinggi</span></td><td><button class="al" onclick="openModal('JTK-2024-05891')">Lihat →</button></td></tr>
+          <tr><td><span class="ref">JTK-2024-04122</span></td><td>Diskriminasi</td><td>TechCorp MY Sdn Bhd</td><td>14 Jun 2024</td><td><span class="sb s-resolved">✅ Diselesaikan</span></td><td><span class="pb p-lo">Rendah</span></td><td><button class="al" onclick="openModal('JTK-2024-04122')">Lihat →</button></td></tr>
+          <tr><td><span class="ref">JTK-2024-03015</span></td><td>Kontrak – Penamatan</td><td>Restoran Maju Jaya</td><td>8 Apr 2024</td><td><span class="sb s-rejected">❌ Ditolak</span></td><td><span class="pb p-lo">Rendah</span></td><td><button class="al" onclick="openModal('JTK-2024-03015')">Lihat →</button></td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- FAQ TAB -->
+  <!-- FAQ -->
   <div class="tab-panel" id="tab-faq">
-    <div class="section-header">
-      <span class="section-badge">Soalan Lazim</span>
-      <h2 class="section-title">Soalan Yang Kerap Ditanya</h2>
-    </div>
+    <div class="sec-hdr"><span class="sec-badge">FAQ</span><h2 class="sec-title">Soalan Yang Kerap Ditanya</h2></div>
     <div class="faq-grid">
-      <div class="faq-item open">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Adakah pekerja gig dilindungi oleh JTK?
-          <span class="faq-toggle">▾</span>
-        </div>
-        <div class="faq-answer">Ya. Mulai 2024, pekerja platform digital seperti penghantar makanan, pemandu e-hailing, dan pekerja bebas dilindungi di bawah pindaan Akta Kerja. JTK kini menerima aduan bagi kategori ini.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Berapa lama masa untuk aduan diproses?
-          <span class="faq-toggle">▾</span>
-        </div>
-        <div class="faq-answer">Aduan biasa diselesaikan dalam 14–30 hari bekerja bergantung kepada kerumitan kes. Kes kecemasan (seperti kemalangan OSH) akan diutamakan dan diselesaikan lebih awal.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Bolehkah saya kekalkan kerahsiaan?
-          <span class="faq-toggle">▾</span>
-        </div>
-        <div class="faq-answer">Ya. Maklumat pengadu dirahsiakan. Walau bagaimanapun, untuk siasatan yang berkesan, nama dan maklumat hubungan anda mungkin perlu dikongsi dengan pihak yang terlibat.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Apakah dokumen yang perlu saya sediakan?
-          <span class="faq-toggle">▾</span>
-        </div>
-        <div class="faq-answer">Dokumen berguna termasuk: kontrak pekerjaan, slip gaji, tangkapan skrin perbualan/e-mel, bukti pembayaran, laporan polis (jika ada), dan mana-mana dokumen berkaitan lain.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Boleh pekerja asing kemukakan aduan?
-          <span class="faq-toggle">▾</span>
-        </div>
-        <div class="faq-answer">Ya. JTK menerima aduan daripada semua pekerja di Semenanjung Malaysia termasuk pekerja asing yang berdokumen. Kami mempunyai pegawai yang boleh berkomunikasi dalam pelbagai bahasa.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          Apakah perbezaan e-Aduan JTK dan e-Mahkamah Buruh?
-          <span class="faq-toggle">▾</span>
-        </div>
-        <div class="faq-answer">e-Aduan JTK adalah untuk aduan dan siasatan pentadbiran. e-Mahkamah Buruh adalah untuk tuntutan litigasi formal. JTK boleh merujuk kes anda ke Mahkamah Buruh jika penyelesaian awal gagal.</div>
-      </div>
+      <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)">Adakah pekerja gig dilindungi oleh JTK?<span class="faq-tog">▾</span></div><div class="faq-a">Ya. Mulai 2024, pekerja platform digital dilindungi di bawah pindaan Akta Kerja. JTK menerima aduan bagi kategori ini.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Berapa lama masa untuk aduan diproses?<span class="faq-tog">▾</span></div><div class="faq-a">Aduan biasa diselesaikan dalam 14–30 hari bekerja. Kes kecemasan (OSH) diutamakan.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Bolehkah saya kekalkan kerahsiaan?<span class="faq-tog">▾</span></div><div class="faq-a">Ya. Maklumat pengadu dirahsiakan. Walau bagaimanapun, nama mungkin perlu dikongsi untuk siasatan yang berkesan.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Apakah dokumen yang perlu saya sediakan?<span class="faq-tog">▾</span></div><div class="faq-a">Kontrak pekerjaan, slip gaji, tangkapan skrin perbualan/e-mel, bukti pembayaran, dan laporan polis jika ada.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Boleh pekerja asing kemukakan aduan?<span class="faq-tog">▾</span></div><div class="faq-a">Ya. JTK menerima aduan daripada semua pekerja di Semenanjung Malaysia termasuk pekerja asing yang berdokumen.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Perbezaan e-Aduan JTK dan e-Mahkamah Buruh?<span class="faq-tog">▾</span></div><div class="faq-a">e-Aduan JTK untuk aduan dan siasatan pentadbiran. e-Mahkamah Buruh untuk tuntutan litigasi formal (sehingga RM 100,000).</div></div>
     </div>
   </div>
-
 </main>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <h3>Jabatan Tenaga Kerja Semenanjung Malaysia</h3>
-        <p>Melindungi hak pekerja dan majikan di Semenanjung Malaysia melalui pelaksanaan undang-undang pekerjaan yang adil dan berkesan.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Perkhidmatan</h4>
-        <a href="#">e-Aduan</a>
-        <a href="#">e-Mahkamah Buruh</a>
-        <a href="#">Semak Gaji Minimum</a>
-        <a href="#">Pendaftaran Majikan</a>
-      </div>
-      <div class="footer-col">
-        <h4>Undang-undang</h4>
-        <a href="#">Akta Kerja 1955</a>
-        <a href="#">Akta OSH 1994</a>
-        <a href="#">Akta Gaji Minimum</a>
-        <a href="#">Pindaan 2022 (Gig)</a>
-      </div>
-      <div class="footer-col">
-        <h4>Pautan</h4>
-        <a href="#">Portal MyGov</a>
-        <a href="#">Kementerian SDM</a>
-        <a href="#">PERKESO</a>
-        <a href="#">HRDF</a>
-      </div>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-brand"><h3>Jabatan Tenaga Kerja Semenanjung Malaysia</h3><p>Melindungi hak pekerja dan majikan melalui pelaksanaan undang-undang pekerjaan yang adil dan berkesan.</p></div>
+      <div class="ft-col"><h4>Perkhidmatan</h4><a href="#">e-Aduan</a><a href="jtk-emahkamah-buruh.html">e-Mahkamah Buruh</a><a href="#">Semak Gaji Minimum</a></div>
+      <div class="ft-col"><h4>Undang-undang</h4><a href="#">Akta Kerja 1955</a><a href="#">Akta OSH 1994</a><a href="#">Akta Gaji Minimum</a><a href="#">Pindaan 2022 (Gig)</a></div>
+      <div class="ft-col"><h4>Pautan</h4><a href="#">Portal MyGov</a><a href="#">Kementerian SDM</a><a href="#">PERKESO</a><a href="#">HRDF</a></div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 Jabatan Tenaga Kerja Semenanjung Malaysia · Hak Cipta Terpelihara</span>
-      <div class="footer-logos">
-        <span class="footer-logo-badge">MYDS</span>
-        <span class="footer-logo-badge">JDN</span>
-        <span class="footer-logo-badge">MyGov</span>
-      </div>
-    </div>
+    <div class="ft-bot"><span>© 2026 Jabatan Tenaga Kerja Semenanjung Malaysia · Hak Cipta Terpelihara</span><div class="ft-chips"><span class="ft-chip">MYDS</span><span class="ft-chip">JDN</span><span class="ft-chip">MyGov</span></div></div>
   </div>
 </footer>
 
+<!-- CASE DETAIL MODAL -->
+<div class="modal-overlay" id="caseModal" onclick="closeModalOut(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-hdr">
+      <div class="modal-hdr-left">
+        <h3 id="mTitle">Butiran Aduan</h3>
+        <p id="mSubtitle">e-Aduan JTK</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+    <div class="modal-foot">
+      <button class="btn-sec" onclick="closeModal()">Tutup</button>
+      <button class="btn-dl">📥 Muat Turun PDF</button>
+    </div>
+  </div>
+</div>
+
 <script>
+const CASES = {
+  'JTK-2024-08421': {
+    title:'JTK-2024-08421 — Gaji Tertunggak',
+    subtitle:'Syarikat Logistik Jaya Sdn Bhd · Difailkan 12 Nov 2024',
+    status:'Dalam Proses', statusCls:'s-progress', statusIcon:'🔵',
+    pengadu:'Mohd Farid bin Zulkifli', ic:'880512-14-5678',
+    tel:'012-3456789', emel:'mfarid@email.com',
+    syarikat:'Syarikat Logistik Jaya Sdn Bhd', ssm:'202101234567',
+    negeri:'Selangor', bandar:'Shah Alam',
+    kategori:'Gaji &amp; Upah Tertunggak', akta:'Akta Kerja 1955',
+    tuntutan:'RM 14,200.00', tempoh:'Jan 2024 – Okt 2024',
+    jenis:'Pekerja Tetap',
+    huraian:'Majikan tidak membayar gaji selama 3 bulan berturut-turut (Ogos, September, Oktober 2024). Gaji bulanan sebanyak RM 2,800 tidak diterima. Telah menghubungi majikan beberapa kali tetapi tidak mendapat sebarang respons. Jumlah tertunggak termasuk elaun pengangkutan sebanyak RM 200 sebulan.',
+    pegawai:'Puan Rosnah binti Ahmad', ofis:'JTK Selangor — Shah Alam',
+    timeline:[
+      {date:'12 Nov 2024',title:'Aduan Difailkan',desc:'Borang 8A diterima. No. rujukan diberikan.',cls:'tl-done',done:true},
+      {date:'15 Nov 2024',title:'Pengesahan Diterima',desc:'Aduan disahkan dan diperuntukkan kepada pegawai.',cls:'tl-done',done:true},
+      {date:'22 Nov 2024',title:'Notis Kepada Majikan',desc:'Surat notis dihantar kepada Syarikat Logistik Jaya.',cls:'tl-done',done:true},
+      {date:'10 Dis 2024',title:'Sesi Perundingan',desc:'Sesi perundingan pertama antara kedua pihak.',cls:'tl-done',done:true},
+      {date:'Sedang Berjalan',title:'Rundingan Lanjutan',desc:'Pegawai sedang menilai respons majikan.',cls:'tl-act',done:false},
+      {date:'TBC',title:'Penyelesaian / Rujukan MB',desc:'Jika rundingan gagal, kes akan dirujuk ke Mahkamah Buruh.',cls:'tl-pend',done:false},
+    ],
+    docs:[
+      {ico:'📄',name:'Slip_Gaji_Jan-Sep_2024.pdf',meta:'Slip Gaji · 2.1 MB',ok:true},
+      {ico:'📋',name:'Kontrak_Pekerjaan_2022.pdf',meta:'Kontrak · 890 KB',ok:true},
+      {ico:'📧',name:'Emel_Tuntutan_Gaji.pdf',meta:'Emel · 340 KB',ok:false},
+    ]
+  },
+  'JTK-2024-07334': {
+    title:'JTK-2024-07334 — Hak Pekerja Gig',
+    subtitle:'GrabFood Malaysia · Difailkan 5 Okt 2024',
+    status:'Menunggu Respons', statusCls:'s-pending', statusIcon:'🟡',
+    pengadu:'Mohd Farid bin Zulkifli', ic:'880512-14-5678',
+    tel:'012-3456789', emel:'mfarid@email.com',
+    syarikat:'GrabFood Malaysia Sdn Bhd', ssm:'201801056789',
+    negeri:'Kuala Lumpur', bandar:'Chow Kit',
+    kategori:'Pekerja Gig &amp; Platform Digital', akta:'Akta Kerja 1955 (Pindaan 2022)',
+    tuntutan:'RM 6,800.00', tempoh:'Mac 2024 – Sep 2024',
+    jenis:'Pekerja Gig / Platform',
+    huraian:'Akaun saya telah digantung secara tiba-tiba tanpa sebarang notis atau penjelasan pada 28 September 2024. Saya telah bekerja sebagai penunggang GrabFood selama 2 tahun dengan rekod prestasi yang baik. Bayaran untuk 45 penghantaran terakhir bernilai RM 6,800 masih belum diterima. Platform enggan memberikan penjelasan bertulis.',
+    pegawai:'Encik Hafiz bin Sulaiman', ofis:'JTK Kuala Lumpur',
+    timeline:[
+      {date:'5 Okt 2024',title:'Aduan Difailkan',desc:'Aduan diterima dan no. rujukan diberikan.',cls:'tl-done',done:true},
+      {date:'8 Okt 2024',title:'Pengesahan',desc:'Disahkan sebagai kes Pekerja Gig — keutamaan sederhana.',cls:'tl-done',done:true},
+      {date:'18 Okt 2024',title:'Notis Kepada Platform',desc:'Notis rasmi dihantar ke GrabFood Malaysia.',cls:'tl-done',done:true},
+      {date:'Menunggu',title:'Respons Platform',desc:'Menunggu maklum balas GrabFood dalam tempoh 14 hari.',cls:'tl-act',done:false},
+      {date:'TBC',title:'Siasatan Lanjut',desc:'Bergantung kepada respons platform.',cls:'tl-pend',done:false},
+    ],
+    docs:[
+      {ico:'📱',name:'Tangkapan_Skrin_Akaun.pdf',meta:'Screenshot · 1.8 MB',ok:true},
+      {ico:'📄',name:'Rekod_Penghantaran_2024.pdf',meta:'Rekod · 2.4 MB',ok:true},
+    ]
+  },
+  'JTK-2024-05891': {
+    title:'JTK-2024-05891 — Kemalangan OSH',
+    subtitle:'Kilang ABC Sdn Bhd · Difailkan 2 Ogo 2024 · DISELESAIKAN',
+    status:'Diselesaikan', statusCls:'s-resolved', statusIcon:'✅',
+    pengadu:'Mohd Farid bin Zulkifli', ic:'880512-14-5678',
+    tel:'012-3456789', emel:'mfarid@email.com',
+    syarikat:'Kilang ABC Sdn Bhd', ssm:'200001089012',
+    negeri:'Selangor', bandar:'Klang',
+    kategori:'Keselamatan &amp; Kesihatan Pekerjaan (OSH)', akta:'Akta OSH 1994',
+    tuntutan:'RM 22,500.00', tempoh:'Julai 2024',
+    jenis:'Pekerja Tetap',
+    huraian:'Kemalangan kerja berlaku pada 15 Julai 2024 akibat kegagalan peralatan yang tidak diselenggara. Mengalami kecederaan tangan kiri memerlukan pembedahan. Majikan enggan membayar pampasan kemalangan dan kos perubatan. Kilang tidak mempunyai sijil OSH yang sah.',
+    pegawai:'Puan Siti Aisyah binti Omar', ofis:'JTK Selangor — Klang',
+    timeline:[
+      {date:'2 Ogo 2024',title:'Aduan Difailkan',desc:'Aduan OSH diterima — keutamaan tinggi.',cls:'tl-done',done:true},
+      {date:'4 Ogo 2024',title:'Siasatan Tapak',desc:'Pegawai JTK menjalankan siasatan di kilang.',cls:'tl-done',done:true},
+      {date:'12 Ogo 2024',title:'Notis Penguatkuasaan',desc:'Kilang ABC dikeluarkan notis penutupan sementara.',cls:'tl-done',done:true},
+      {date:'28 Ogo 2024',title:'Rundingan Pampasan',desc:'Perjanjian pampasan RM 22,500 dicapai.',cls:'tl-done',done:true},
+      {date:'5 Sep 2024',title:'✅ Kes Diselesaikan',desc:'Pampasan penuh diterima. Kilang dikemaskini sijil OSH.',cls:'tl-done',done:true},
+    ],
+    docs:[
+      {ico:'🏥',name:'Laporan_Perubatan.pdf',meta:'Laporan Hospital · 1.2 MB',ok:true},
+      {ico:'📋',name:'Laporan_Polis_Kemalangan.pdf',meta:'Laporan Polis · 670 KB',ok:true},
+      {ico:'📄',name:'Perjanjian_Penyelesaian.pdf',meta:'Perjanjian · 450 KB',ok:true},
+    ]
+  },
+  'JTK-2024-04122': {
+    title:'JTK-2024-04122 — Diskriminasi Tempat Kerja',
+    subtitle:'TechCorp MY Sdn Bhd · Difailkan 14 Jun 2024 · DISELESAIKAN',
+    status:'Diselesaikan', statusCls:'s-resolved', statusIcon:'✅',
+    pengadu:'Mohd Farid bin Zulkifli', ic:'880512-14-5678',
+    tel:'012-3456789', emel:'mfarid@email.com',
+    syarikat:'TechCorp MY Sdn Bhd', ssm:'201601234000',
+    negeri:'Kuala Lumpur', bandar:'KLCC',
+    kategori:'Diskriminasi &amp; Gangguan', akta:'Akta Kerja 1955',
+    tuntutan:'—', tempoh:'Jan 2024 – Jun 2024',
+    jenis:'Pekerja Tetap',
+    huraian:'Pengadu mengalami diskriminasi berterusan berasaskan kaum semasa proses kenaikan pangkat. Tiga kali berturut-turut dinafikan kenaikan pangkat walaupun memenuhi semua kriteria yang ditetapkan. Pengadu peringkat tertinggi dari segi penilaian prestasi dalam pasukan.',
+    pegawai:'Encik Razif bin Johari', ofis:'JTK Kuala Lumpur',
+    timeline:[
+      {date:'14 Jun 2024',title:'Aduan Difailkan',desc:'Aduan diskriminasi diterima.',cls:'tl-done',done:true},
+      {date:'20 Jun 2024',title:'Siasatan Dalaman',desc:'Pihak JTK menjalankan temu duga dengan kedua-dua pihak.',cls:'tl-done',done:true},
+      {date:'10 Jul 2024',title:'Rundingan Penyelesaian',desc:'Majikan bersetuju untuk melaksanakan semula proses kenaikan pangkat secara adil.',cls:'tl-done',done:true},
+      {date:'30 Jul 2024',title:'✅ Kes Diselesaikan',desc:'Pengadu telah dinaikkan pangkat. Majikan diarah menjalani latihan anti-diskriminasi.',cls:'tl-done',done:true},
+    ],
+    docs:[
+      {ico:'📋',name:'Rekod_Penilaian_Prestasi.pdf',meta:'HR Record · 780 KB',ok:true},
+      {ico:'📧',name:'Emel_HR_Penolakan.pdf',meta:'Emel · 210 KB',ok:true},
+    ]
+  },
+  'JTK-2024-03015': {
+    title:'JTK-2024-03015 — Penamatan Kontrak',
+    subtitle:'Restoran Maju Jaya · Difailkan 8 Apr 2024 · DITOLAK',
+    status:'Ditolak', statusCls:'s-rejected', statusIcon:'❌',
+    pengadu:'Mohd Farid bin Zulkifli', ic:'880512-14-5678',
+    tel:'012-3456789', emel:'mfarid@email.com',
+    syarikat:'Restoran Maju Jaya', ssm:'—',
+    negeri:'Selangor', bandar:'Subang Jaya',
+    kategori:'Kontrak – Penamatan Perkhidmatan', akta:'Akta Kerja 1955',
+    tuntutan:'RM 3,200.00', tempoh:'Mac 2024',
+    jenis:'Pekerja Tetap',
+    huraian:'Dakwaan pemecatan tanpa notis. Setelah siasatan, didapati pengadu sendiri yang meletak jawatan secara sukarela dan telah menandatangani surat perletakan jawatan.',
+    pegawai:'Puan Norlia binti Hamdan', ofis:'JTK Selangor — Subang Jaya',
+    timeline:[
+      {date:'8 Apr 2024',title:'Aduan Difailkan',desc:'Aduan penamatan kontrak diterima.',cls:'tl-done',done:true},
+      {date:'15 Apr 2024',title:'Siasatan Dijalankan',desc:'Temu duga dengan kedua-dua pihak dijalankan.',cls:'tl-done',done:true},
+      {date:'25 Apr 2024',title:'❌ Aduan Ditolak',desc:'Siasatan mendapati pengadu telah bersetuju meletak jawatan secara sukarela. Aduan tidak berasas.',cls:'tl-done',done:true},
+    ],
+    docs:[
+      {ico:'📄',name:'Surat_Perletakan_Jawatan.pdf',meta:'Dokumen · 320 KB',ok:true},
+    ]
+  }
+};
+
 function showTab(id) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  const tabs = ['home','form','track','faq'];
-  const idx = tabs.indexOf(id);
-  if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('act'));
+  document.getElementById('tab-'+id).classList.add('act');
+  const tabs=['home','form','track','faq'];
+  const idx=tabs.indexOf(id);
+  if(idx>=0) document.querySelectorAll('.tab-btn')[idx].classList.add('act');
 }
-function toggleFaq(el) {
-  el.closest('.faq-item').classList.toggle('open');
+
+function openModal(ref) {
+  const c = CASES[ref]; if(!c) return;
+  document.getElementById('mTitle').textContent = ref + ' — Butiran Aduan';
+  document.getElementById('mSubtitle').textContent = c.subtitle;
+  document.getElementById('mBody').innerHTML = buildModal(c);
+  document.getElementById('caseModal').classList.add('open');
+  document.body.style.overflow='hidden';
 }
+function closeModal() {
+  document.getElementById('caseModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModalOut(e) { if(e.target===document.getElementById('caseModal')) closeModal(); }
+
+function buildModal(c) {
+  const tlHtml = c.timeline.map(t=>`
+    <div class="tl-item">
+      <div class="tl-dot ${t.cls}" style="${t.done&&t.cls==='tl-done'?'':''}">
+        ${t.done?'✓':''}
+      </div>
+      <div class="tl-date">${t.date}</div>
+      <div class="tl-title">${t.title}</div>
+      <div class="tl-desc">${t.desc}</div>
+    </div>`).join('');
+  const docHtml = c.docs.map(d=>`
+    <div class="modal-doc">
+      <div class="doc-ico">${d.ico}</div>
+      <div><div class="doc-name">${d.name}</div><div class="doc-meta">${d.meta}</div></div>
+      <div class="doc-status"><span class="dv ${d.ok?'dv-ok':'dv-pend'}">${d.ok?'✓ Disahkan':'⏳ Semakan'}</span></div>
+    </div>`).join('');
+  return `
+    <div class="modal-section">
+      <div class="modal-section-title">Maklumat Pengadu</div>
+      <div class="info-grid">
+        <div class="info-item"><div class="lbl">Nama Penuh</div><div class="val">${c.pengadu}</div></div>
+        <div class="info-item"><div class="lbl">No. Kad Pengenalan</div><div class="val mono">${c.ic}</div></div>
+        <div class="info-item"><div class="lbl">No. Telefon</div><div class="val">${c.tel}</div></div>
+        <div class="info-item"><div class="lbl">E-mel</div><div class="val">${c.emel}</div></div>
+      </div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Maklumat Aduan</div>
+      <div class="info-grid">
+        <div class="info-item"><div class="lbl">Syarikat / Platform</div><div class="val">${c.syarikat}</div></div>
+        <div class="info-item"><div class="lbl">No. SSM</div><div class="val mono">${c.ssm}</div></div>
+        <div class="info-item"><div class="lbl">Negeri</div><div class="val">${c.negeri}</div></div>
+        <div class="info-item"><div class="lbl">Bandar</div><div class="val">${c.bandar}</div></div>
+        <div class="info-item"><div class="lbl">Kategori</div><div class="val">${c.kategori}</div></div>
+        <div class="info-item"><div class="lbl">Akta Berkaitan</div><div class="val">${c.akta}</div></div>
+        <div class="info-item"><div class="lbl">Jumlah Tuntutan</div><div class="val" style="font-size:15px;color:var(--navy);font-weight:700;">${c.tuntutan}</div></div>
+        <div class="info-item"><div class="lbl">Tempoh Tuntutan</div><div class="val">${c.tempoh}</div></div>
+        <div class="info-item"><div class="lbl">Jenis Pekerjaan</div><div class="val">${c.jenis}</div></div>
+        <div class="info-item"><div class="lbl">Status Semasa</div><div class="val"><span class="sb ${c.statusCls}">${c.statusIcon} ${c.status}</span></div></div>
+      </div>
+      <div class="info-item" style="margin-top:10px;background:var(--surface);border-radius:var(--r-md);padding:12px;">
+        <div class="lbl">Huraian Aduan</div>
+        <div class="val" style="font-weight:400;font-size:13px;color:var(--muted);margin-top:6px;line-height:1.7;">${c.huraian}</div>
+      </div>
+      <div style="margin-top:10px;background:var(--blue-pale);border-radius:var(--r-md);padding:12px;display:flex;gap:16px;">
+        <div><div class="lbl">Pegawai Kes</div><div class="val" style="font-size:13px;">${c.pegawai}</div></div>
+        <div><div class="lbl">Pejabat JTK</div><div class="val" style="font-size:13px;">${c.ofis}</div></div>
+      </div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Kronologi Kes</div>
+      <div class="timeline">${tlHtml}</div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Dokumen Sokongan</div>
+      ${docHtml}
+    </div>`;
+}
+
+function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
 </script>
 </body>
 </html>

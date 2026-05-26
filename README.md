@@ -1,66 +1,77 @@
 # Portal Digital JTK — Jabatan Tenaga Kerja Semenanjung Malaysia
 
-A front-end prototype for the digital labour services portal of Jabatan Tenaga Kerja Semenanjung Malaysia (JTK), built in accordance with the [Malaysia Government Design System (MYDS)](https://design.digital.gov.my/en).
+Front-end prototype for the digital labour services portal of Jabatan Tenaga Kerja Semenanjung Malaysia (JTK), built following the [Malaysia Government Design System (MYDS)](https://design.digital.gov.my/en).
 
 **Live demo:** `https://yourusername.github.io/jtk-digital/`
-
----
-
-## Overview
-
-This prototype covers three interconnected pages representing a proposed centralised online labour services hub for JTK. The goal is to move complaint submission and labour court proceedings — currently handled largely offline or across fragmented channels — into a single, accessible, mobile-friendly digital platform.
 
 ---
 
 ## Pages
 
 ### `index.html` — Landing Page
-The main entry point. A clean hub page that directs users to the appropriate service.
+Hub utama. Mengarahkan pengguna ke e-Aduan atau e-Mahkamah Buruh melalui halaman log masuk.
 
-- Official GOV banner following MYDS standards
-- Two service cards linking to e-Aduan and e-Mahkamah Buruh
-- Contextual help note explaining which portal to use
+- Official GOV banner (MYDS standard)
+- Two service cards with contextual descriptions
+- Help note explaining which portal to use
 - Fully responsive down to 375px
+- Both cards route through `jtk-login.html` before entering the portal
+
+### `jtk-login.html` — Log Masuk
+LHDN-style split-screen login page. Shared by both portals, with destination routing via `?dest=aduan` or `?dest=mahkamah`.
+
+- Left panel: navy branding with portal features
+- Right panel: two authentication methods
+  - **MyDigitalID** — one-click simulated redirect (no password required)
+  - **No. Kad Pengenalan + Kata Laluan** — IC number input with show/hide password, validation, error/success alerts
+- After successful login, automatically redirects to the correct portal
+- Mobile responsive — left panel collapses on small screens
 
 ### `jtk-eaduan-portal.html` — e-Aduan JTK
-Online complaint portal modelled after KPDN's e-Aduan system, purpose-built for JTK's mandate under the Employment Act 1955 and related legislation.
+Online complaint portal for JTK's administrative enforcement mandate.
 
-Key features:
-- Complaint categories covering gig/platform workers, unpaid wages, OSH, discrimination, foreign workers, and contract disputes
-- 4-step complaint wizard (Borang 8A equivalent) with file upload support
-- Status tracking table with reference numbers and priority indicators
-- FAQ accordion covering eligibility, process, and confidentiality
-- Dedicated gig worker category reflecting the Employment (Amendment) Act 2022
+- Authenticated header showing logged-in user + Log Keluar button
+- 6 complaint category cards (Pekerja Gig, Gaji, OSH, Kontrak, Diskriminasi, Pekerja Asing)
+- 4-step complaint wizard with file upload
+- **Status tracking table** — all 5 "Lihat →" buttons open a full case detail modal with:
+  - Complainant & employer information
+  - Complaint category, legislation, amount claimed
+  - Full case description
+  - Step-by-step case timeline (with live/done/pending states)
+  - Document list with verification status
+- FAQ accordion
 
 ### `jtk-emahkamah-buruh.html` — e-Mahkamah Buruh
-Online Labour Court system replacing the current largely offline proceedings under Section 69 of the Employment Act 1955.
+Digital Labour Court system replacing the current offline proceedings.
 
-Key features:
-- Authenticated dashboard with case summary and upcoming hearing alerts
-- 5-step claim filing wizard (Form MB-8A) with RM 100,000 cap enforcement and fee calculator
-- Virtual hearing room — simulated video-conference interface with live participant status and automated proceeding notes
-- Case timeline from filing through service of notice, mediation, hearing, to award
-- Online mediation module with settlement offer form and integrated hearing calendar
-- Document management with verification status and deadline alerts
-- Award display with itemised breakdown and PDF download
+- Sidebar navigation with 8 sections
+- **Dashboard** — live hearing alert, 4 stat cards, recent cases list, case timeline
+- **Kes Saya** — full case table with "Lihat →" and "Award →" buttons opening detailed modals
+- **Failkan Tuntutan** — 5-step filing wizard with pre-filled user data, RM 100k cap, fee summary
+- **Perbicaraan Dalam Talian** — virtual hearing room with live participant status, agenda, auto-notes
+- **Mediasi** — settlement offer form + June 2026 calendar with hearing/deadline markers
+- **Dokumen** — document management with verification status and deadline alerts
+- **Keputusan & Award** — itemised award breakdown with PDF download button
+- **All "Lihat →" / "Award →" buttons** open full case detail modals with:
+  - Full case parties, judge, registrar, legislation
+  - Detailed claim description
+  - Complete chronological timeline
+  - Award breakdown (for resolved cases)
+  - Document list
 
 ---
 
-## Design System
+## User Flow
 
-All pages follow the [Malaysia Government Design System (MYDS)](https://design.digital.gov.my/en) published by Jabatan Digital Negara (JDN):
-
-| Token | Value |
-|---|---|
-| Font | Plus Jakarta Sans |
-| Blue 900 | `#042C53` |
-| Blue 600 | `#185FA5` |
-| Blue 50 | `#E6F1FB` |
-| Gray 900 | `#2C2C2A` |
-| Border radius (md) | `8px` |
-| Border radius (lg) | `12px` |
-
-Components used: GOV banner, phase banner, sticky header, cards, form wizard, status badges, task timeline, data table, FAQ accordion, alert callouts.
+```
+index.html (Landing)
+    │
+    ├─→ jtk-login.html?dest=aduan
+    │       └─→ (after login) jtk-eaduan-portal.html
+    │
+    └─→ jtk-login.html?dest=mahkamah
+            └─→ (after login) jtk-emahkamah-buruh.html
+```
 
 ---
 
@@ -68,37 +79,68 @@ Components used: GOV banner, phase banner, sticky header, cards, form wizard, st
 
 ```
 jtk-digital/
-├── index.html                  # Landing page (portal hub)
-├── jtk-eaduan-portal.html      # e-Aduan complaint portal
-├── jtk-emahkamah-buruh.html    # e-Mahkamah Buruh (Labour Court)
+├── index.html                    # Landing page — renamed from jtk-portal-utama.html
+├── jtk-login.html                # Shared login page (MyDigitalID + IC/Password)
+├── jtk-eaduan-portal.html        # e-Aduan complaint portal
+├── jtk-emahkamah-buruh.html      # e-Mahkamah Buruh (Labour Court)
 └── README.md
 ```
+
+> **Important:** Rename `jtk-portal-utama.html` → `index.html` before deploying to GitHub Pages.
+
+---
+
+## Design System
+
+All pages follow [MYDS by Jabatan Digital Negara (JDN)](https://design.digital.gov.my/en):
+
+| Token | Value |
+|---|---|
+| Font | Plus Jakarta Sans |
+| Blue 900 (Navy) | `#042C53` |
+| Blue 600 | `#185FA5` |
+| Blue 50 | `#E6F1FB` |
+| Gray 900 | `#2C2C2A` |
+| Yellow (GOV stripe) | `#FFD600` |
+| Border radius (md) | `8px` |
+| Border radius (lg) | `12px` |
 
 ---
 
 ## Deployment (GitHub Pages)
 
-1. Push all files to a public GitHub repository
-2. Go to **Settings → Pages**
-3. Set source to **Deploy from branch → main → / (root)**
-4. Save — the site will be live at `https://yourusername.github.io/repo-name/` within a minute
+1. Rename `jtk-portal-utama.html` → `index.html`
+2. Push all 5 files to a **public** GitHub repository
+3. Go to **Settings → Pages**
+4. Source: **Deploy from branch → main → / (root)** → Save
+5. Live at `https://yourusername.github.io/repo-name/` within ~60 seconds
 
-The landing page must be named `index.html` for GitHub Pages to serve it as the root URL. The other filenames can remain as-is since all internal links use relative paths.
+---
+
+## Sample Login Credentials (Demo)
+
+Any IC number of 6+ digits and password of 4+ characters will pass the demo login. Examples:
+
+| Method | Input |
+|---|---|
+| MyDigitalID | Click "Teruskan dengan MyDigitalID" |
+| IC + Password | IC: `880512145678` / Password: `test1234` |
 
 ---
 
 ## Scope & Limitations
 
-This is a **front-end prototype only**. It does not include:
+This is a **front-end prototype only**. Production deployment requires:
 
-- Backend API or database integration
-- Real authentication (MyDigitalID / Singpass-equivalent)
-- Actual file upload processing
-- Live video-conferencing (WebRTC)
-- Payment gateway (FPX)
-- Email/SMS notification system
-
-These would need to be integrated by JTK's technology partner against JTK's existing Oracle or MyGovUC infrastructure, or a new stack procured through the standard government ICT procurement process.
+- Backend API (REST/GraphQL)
+- Real MyDigitalID / MYSSO integration (JDN)
+- FPX payment gateway (Paynet Malaysia)
+- WebRTC for live video hearings
+- PostgreSQL / Oracle DB integration with JTK's existing systems
+- Email/SMS notification system (MAMPU infrastructure)
+- PDPA 2010 compliance audit
+- ISMS certification (ISO 27001)
+- Penetration testing & OWASP compliance
 
 ---
 
@@ -106,20 +148,21 @@ These would need to be integrated by JTK's technology partner against JTK's exis
 
 | Act | Relevance |
 |---|---|
-| Employment Act 1955 (Act 265) | Primary labour law; Section 69 covers Labour Court claims |
+| Employment Act 1955 (Act 265) | Primary labour law; Section 69 = Labour Court claims |
 | Employment (Amendment) Act 2022 | Gig and platform worker protections |
 | Occupational Safety and Health Act 1994 | OSH complaints |
 | Minimum Wages Order 2022 | RM 1,700 minimum wage enforcement |
-| Industrial Relations Act 1967 | Unfair dismissal — refers to Industrial Court, not Labour Court |
+| Personal Data Protection Act 2010 | Data privacy for all user submissions |
+| Industrial Relations Act 1967 | Unfair dismissal → Industrial Court (not Labour Court) |
 
 ---
 
 ## Contact
 
-**Jabatan Tenaga Kerja Semenanjung Malaysia**
-Presint 2, Putrajaya
-Toll-free: 1-800-88-8064
-Email: aduan@jtksm.gov.my
+**Jabatan Tenaga Kerja Semenanjung Malaysia**  
+Presint 2, Putrajaya  
+Toll-free: `1-800-88-8064`  
+Email: `aduan@jtksm.gov.my`
 
 ---
 
